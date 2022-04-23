@@ -1,0 +1,2 @@
+public class ders7 {
+}
