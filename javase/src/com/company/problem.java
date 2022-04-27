@@ -4,14 +4,22 @@ import java.util.Scanner;
 
 public class problem {
     public static void main(String[] args) {
-        Scanner scn = new Scanner(System.in);
+//        Scanner scn = new Scanner(System.in);
+//        System.out.print("Please enter Starter Number :");
+//        long number = scn.nextLong();
+        long number = 999999999;
 
-        System.out.print("Please enter Starter Number :");
-        long number = scn.nextLong();
+        while (number > 1){
+            number--;
+            solver(number);
+        }
+    }
 
+    static void solver(long number) {
         while (true) {
             if (number == 1) {
                 System.out.println("Dongu bitdi reqem 1 - dir.");
+                System.out.println("--------------------------");
                 break;
             } else {
                 if (number % 2 == 0) {
