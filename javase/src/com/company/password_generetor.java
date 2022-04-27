@@ -1,11 +1,14 @@
 package com.company;
 
+import java.util.Random;
+
 public class password_generetor {
     public static void main(String[] args) {
         generator();
     }
 
     static void generator() {
+        Random r = new Random();
         String password = "";
 
         String[] spacarc = {
@@ -14,7 +17,7 @@ public class password_generetor {
         int[] sequence = new int[(int) ((Math.random() * (12 - 8)) + 8)];
 
         for (int i = 0; i < sequence.length; i++){
-            sequence[i] = (int) ((Math.random() * (3 - 1)) + 1);
+            sequence[i] = (int) ((Math.random() * (4 - 1)) + 1);
         }
             char hrf = 'a';
 
@@ -24,19 +27,12 @@ public class password_generetor {
             } else if (k == 2) {
                 password += spacarc[(int) ((Math.random() * (spacarc.length - 1)) + 1)];
             } else if (k == 3) {
-                password += hrf + (int) ((Math.random() * (25 - 1)) + 1);
+                password += (char)(r.nextInt(26) + 'a');
             }
-            System.out.println(password);
+//            System.out.println(password);
         }
         System.out.println("-------");
         System.out.println(password);
 
     }
-
-
-//
-//        for (int i = 0; hrf == 'z'; i++){
-//        System.out.println(hrf);
-//        hrf ++;
-//    }
 }
