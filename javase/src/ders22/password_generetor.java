@@ -1,4 +1,7 @@
 package ders22;
+
+import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDate;
@@ -8,10 +11,9 @@ import java.util.Scanner;
 
 public class password_generetor {
     public static void main(String[] args) {
-
         String pass = generator();
         printFile(pass);
-
+        printFile(String.valueOf(checker(pass)));
 
     }
 
@@ -45,7 +47,6 @@ public class password_generetor {
                 }
             }
         }
-        printFile("-------");
         printFile(String.valueOf(password));
         printFile("Points: " + checker(String.valueOf(password)));
         return String.valueOf(password);
@@ -115,9 +116,24 @@ public class password_generetor {
     }
     static void printFile(String a){
         try {
-            FileWriter flr = new FileWriter("C:\\Users\\KH/Desktop/console.txt");
-            flr.write(a + "\n");
-            flr.close();
+            File file = new File("C:\\Users\\KH/Desktop/console.txt");
+            if (file.exists()) {
+                FileWriter fw = new FileWriter(file, true);
+                BufferedWriter bw = new BufferedWriter(fw);
+                bw.write(a);
+                bw.newLine();
+                bw.write("----------------------------------------------");
+                bw.newLine();
+                bw.close();
+            } else {
+                LocalDate date = LocalDate.now();
+                FileWriter flr = new FileWriter("C:\\Users\\KH/Desktop/console.txt");
+                flr.write(a + "\n");
+                printFile("----------------------------------------------");
+                printFile(date.toString());
+                printFile("----------------------------------------------");
+                flr.close();
+            }
         } catch (Error error) {
             System.out.println("An error. \n" + error);
         } catch (IOException e) {
