@@ -11,12 +11,13 @@ public class operations {
     public int calculate(String problem) {
         split(problem);
         System.out.println(numbers.toString());
+
         return -1;
     }
 
 
     private static ArrayList split(String problem) {
-        //                                                ( 575 + 58 ) * 596
+
         while (i < problem.length()) {
             o = problem.charAt(i);
             if (o == '/' || o == '*' || o == '+' || o == '-' || o == ')' || o == '(') {
@@ -29,7 +30,6 @@ public class operations {
             }
             i++;
         }
-        System.out.println(a);
         return a;
     }
 
@@ -37,15 +37,12 @@ public class operations {
         String number = String.valueOf(o);
         int j = i2 + 1;
         while (j <= problem.length()) {
-
             char d = problem.charAt(j);
-            System.out.println(j);
             if (j < problem.length() - 1) {
                 if (d == '/' || d == '*' || d == '+' || d == '-' || d == ')' || d == '(') {
                     a.add(number);
                     i = j;
                     a.add(d);
-                    //                                                ( 575 + 58 ) * 596
                     break;
                 } else if (isNumeric(String.valueOf(d))) {
                     if (j < problem.length()) {
@@ -73,6 +70,21 @@ public class operations {
             }
             j++;
         }
+    }
+
+    //    ---------------------------------------------------------------------------------------------------------
+    private void breakedInter() {
+        ArrayList clone = numbers;
+        for (int i = 0; i < numbers.size(); i++) {
+            String selected = (String) numbers.get(i);
+            if (selected == "(") {
+
+            }
+        }
+    }
+    private int breakCalculate (int index) {
+
+        return 0;
     }
 
     private static boolean isOperator(char o) {

@@ -1,0 +1,7 @@
+create database baza1;
+
+create table baza1.computers (id int, brand text, price double);
+
+use basa1;
+
+show table;
