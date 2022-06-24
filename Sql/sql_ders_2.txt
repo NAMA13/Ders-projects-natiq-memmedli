@@ -1,0 +1,16 @@
+create database aprel5_ad_soyad;
+use aprel5_ad_soyad;
+create table books (id int not null auto_increment, name varchar(30), price decimal(10,2),description text, primary key (id));
+insert into books (name,price,description)
+    -> values
+    -> ("Bo0ks111", 15.2, "Kitabdi da"),
+    -> ("Bo0ks111", 12.99, "Kitabdi da"),
+    -> ("Bo0ks111", 0.99, "Kitabdi da"),
+    -> ("Bo0ks111", 50.99, "Kitabdi da"),
+    -> ("Bo0ks111", 70.99, "Kitabdi da");
+update books set name = 'Books'where id = 3;
+delete from books where id = 4;
+alter table books add column author text;
+update books set author = "serdar";
+alter table books change author authorname varchar(30);
+alter table books modify column authorname text;
