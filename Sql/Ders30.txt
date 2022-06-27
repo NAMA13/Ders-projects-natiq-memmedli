@@ -1,0 +1,70 @@
+mysql> create database computers;
+Query OK, 1 row affected (0.01 sec)
+
+mysql> use computers;
+Database changed
+
+mysql> create table computers (id int primary key auto_increment,
+    -> brand VARCHAR(30),
+    -> model VARCHAR(30),
+    -> price decimal(10,2),
+    -> description text,
+    -> register datetime);
+Query OK, 0 rows affected (0.05 sec)
+
+mysql> show tables;
++---------------------+
+| Tables_in_computers |
++---------------------+
+| computers           |
++---------------------+
+1 row in set (0.00 sec)
+
+mysql> desc computers;
++-------------+---------------+------+-----+---------+----------------+
+| Field       | Type          | Null | Key | Default | Extra          |
++-------------+---------------+------+-----+---------+----------------+
+| id          | int           | NO   | PRI | NULL    | auto_increment |
+| brand       | varchar(30)   | YES  |     | NULL    |                |
+| model       | varchar(30)   | YES  |     | NULL    |                |
+| price       | decimal(10,2) | YES  |     | NULL    |                |
+| description | text          | YES  |     | NULL    |                |
+| register    | datetime      | YES  |     | NULL    |                |
++-------------+---------------+------+-----+---------+----------------+
+6 rows in set (0.00 sec)
+
+mysql> insert into computers (brand, model, price, description, register)
+    -> values
+    -> ('Natiq', 'NAMA-0618', 52000.99, 'Almayin zehmet deyilse', '2000.06.07');
+Query OK, 1 row affected, 1 warning (0.01 sec)
+
+mysql>  alter table computers modify column id int not null;
+Query OK, 1 row affected (0.07 sec)
+Records: 1  Duplicates: 0  Warnings: 0
+
+mysql> alter table computers modify column register datetime default CURRENT_TIMESTAMP;
+Query OK, 0 rows affected (0.01 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> select * from computers;
++----+-------+-----------+----------+------------------------+---------------------+
+| id | brand | model     | price    | description            | register            |
++----+-------+-----------+----------+------------------------+---------------------+
+|  1 | Natiq | NAMA-0618 | 52000.99 | Almayin zehmet deyilse | 2000-06-07 00:00:00 |
++----+-------+-----------+----------+------------------------+---------------------+
+1 row in set (0.00 sec)
+
+mysql> insert into computers (id,brand, model, price, description)
+    -> values
+    -> (2,'Natiq', 'NAMA-0618', 52000.99, 'Almayin zehmet deyilse');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from computers
+    -> ;
++----+-------+-----------+----------+------------------------+---------------------+
+| id | brand | model     | price    | description            | register            |
++----+-------+-----------+----------+------------------------+---------------------+
+|  1 | Natiq | NAMA-0618 | 52000.99 | Almayin zehmet deyilse | 2000-06-07 00:00:00 |
+|  2 | Natiq | NAMA-0618 | 52000.99 | Almayin zehmet deyilse | 2022-06-26 22:16:51 |
++----+-------+-----------+----------+------------------------+---------------------+
+2 rows in set (0.00 sec)
