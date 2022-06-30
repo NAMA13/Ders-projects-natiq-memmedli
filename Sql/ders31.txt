@@ -1,0 +1,43 @@
+mysql> create table computer (id int primary key auto_increment,
+    -> brand VARCHAR(30),
+    -> model VARCHAR(30),
+    -> price decimal(10,2),
+    -> description text,
+    -> register datetime);
+----------------------------------------------------------------
+mysql> desc computer;
++-------------+---------------+------+-----+---------+----------------+
+| Field       | Type          | Null | Key | Default | Extra          |
++-------------+---------------+------+-----+---------+----------------+
+| id          | int           | NO   | PRI | NULL    | auto_increment |
+| brand       | varchar(30)   | YES  |     | NULL    |                |
+| model       | varchar(30)   | YES  |     | NULL    |                |
+| price       | decimal(10,2) | YES  |     | NULL    |                |
+| description | text          | YES  |     | NULL    |                |
+| register    | datetime      | YES  |     | NULL    |                |
++-------------+---------------+------+-----+---------+----------------+
+---------------------------------------------------------------
+mysql> insert into computer (brand, model, price, desciption, register)
+    -> values
+    -> ('HP', 'Pavilon', 56412.55, 'alanda bilersen', '2022.03.12')
+    -> ('HP', 'Pavilon', 56412.55, 'alanda bilersen', '2022.03.12')
+    -> ('HP', 'Pavilon', 56412.55, 'alanda bilersen', '2022.03.12')
+    -> ('HP', 'Pavilon', 56412.55, 'alanda bilersen', '2022.03.12')
+    -> ('HP', 'Pavilon', 56412.55, 'alanda bilersen', '2022.03.12')
+    -> ('HP', 'Pavilon', 56412.55, 'alanda bilersen', '2022.03.12')
+    -> ('HP', 'Pavilon', 56412.55, 'alanda bilersen', '2022.03.12')
+    -> ('HP', 'Pavilon', 56412.55, 'alanda bilersen', '2022.03.12')
+    -> ('HP', 'Pavilon', 56412.55, 'alanda bilersen', '2022.03.12')
+    -> ('HP', 'Pavilon', 56412.55, 'alanda bilersen', '2022.03.12');
+----------------------------------------------------------------
+mysql> select * from computer order by brand desc;
+----------------------------------------------------------------
+mysql> select MAX(price) from computer;
+----------------------------------------------------------------
+mysql> select MIN(price) from computer;
+----------------------------------------------------------------
+mysql> select AVG(price) from computer;
+----------------------------------------------------------------
+mysql> select count(id) from computer;
+----------------------------------------------------------------
+mysql> select * from computer where id in 3,5,7;
