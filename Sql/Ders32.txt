@@ -1,0 +1,26 @@
+mysql> create table books
+    -> (id int primary key not null,
+    -> name text,
+    -> price double,
+    -> author_id int);
+
+mysql> create table authors (
+    -> id int primary key not null,
+    -> name text);
+
+
+mysql> insert into authors (id,name)
+    -> values
+    -> (1, 'Natiq'),
+    -> (2, 'Saa;am'),
+    -> (3, 'Uzeyir');
+
+mysql> insert into books (id,name,price,author_id)
+    -> values
+    -> (1,'SALAM',30.00,2),
+    -> (2,'Salam',50.00,3),
+    -> (3,'Saqol',40.00,1),
+    -> (4,'Yalla-*',100.00,1),
+    -> (5, 'dasfg', 150.00,1);
+
+mysql> select b.id, b.name, b.price, a.name, b.author_id from books b join author a on b.id=b.author_id;
