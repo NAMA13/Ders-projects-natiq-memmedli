@@ -1,0 +1,21 @@
+mysql> create table products (id int not null primary key auto_increment, name text, price double,quantity int);
+mysql> insert into products (name, price, quantity)
+    -> values
+    -> ('Salam', 28.5, 5),
+    -> ('Sucuk', 28.5, 5),
+    -> ('Salam', 28.5, 5),
+    -> ('Salam', 28.5, 5),
+    -> ('Salam', 28.5, 5),
+    -> ('Salam', 28.5, 5),
+    -> ('Salam', 28.5, 5),
+    -> ('Salam', 28.5, 5),
+    -> ('Salam', 28.5, 5),
+    -> ('Salam', 28.5, 5);
+mysql> select name as Product_Name, count(name) as Say, sum(price) as qiymet from products group by name;
++--------------+-----+--------+
+| Product_Name | Say | qiymet |
++--------------+-----+--------+
+| Salam        |   9 |  256.5 |
+| Sucuk        |   1 |   28.5 |
++--------------+-----+--------+
+2 rows in set (0.01 sec)
