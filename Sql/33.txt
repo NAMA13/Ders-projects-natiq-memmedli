@@ -19,3 +19,4 @@ mysql> select name as Product_Name, count(name) as Say, sum(price) as qiymet fro
 | Sucuk        |   1 |   28.5 |
 +--------------+-----+--------+
 2 rows in set (0.01 sec)
+mysql> select name, max(price), id as Product_ID from products group by price; 
