@@ -1,11 +1,9 @@
-
 package application;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.ResultSet;
 import java.sql.Statement;
-import java.util.Objects;
+import java.sql.ResultSet;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -13,69 +11,70 @@ import javax.swing.JOptionPane;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 
+
+
 public class Main {
 
 	@FXML
-	TextField myName;
-	@FXML
-	TextField surname;
-	@FXML
-	TextField phone;
-	@FXML
-	TextField address;
+	private TextField name;
 
 	@FXML
-	private void onSave() {
-		String s = myName.getText();
-		String s2 = surname.getText();
-		String s3 = phone.getText();
-		String s4 = address.getText();
-		
+	private TextField surname;
+
+	@FXML
+	private TextField mobile;
+
+	@FXML
+	private TextField adres;
+
+	@FXML
+	private void onSave() { 
 		try {
 			
-			
+		 
+			  
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			Connection conn = DriverManager
-					.getConnection("jdbc:mysql://localhost:3306/aprel5?useSSL=false&serverTimezone=UTC", "root", "1234");
+					.getConnection("jdbc:mysql://localhost:3306/new_students_baza?useSSL=false&serverTimezone=UTC",
+							"root","1234");
 			
-			 Statement st = conn.createStatement();
+		Statement statement = conn.createStatement();
+ 
+			
 			 
-			 if(Objects.equals(s, "")) {
-				 JFrame f;
-				 f=new JFrame();
-				 JOptionPane.showMessageDialog(f,"no");
-			 }
-			 else {
-				 st.executeUpdate("insert into students (name,surname,phone,address) values ('"+s+"','"+s2+"','"+s3+"','"+s4+"')");
-			 }
+				String ad = name.getText();
+				String soyad = surname.getText();
+				String tel = mobile.getText();
+				String address = adres.getText();
+			
+
+				if(ad.equals("")|| soyad.trim().equals("")|| tel.trim().equals("")||address.trim().equals("")) {
+					Notifications.create()
+					.title("Validitaion")
+					.text("Hec birini bos woymayin")
+					.showInformation();
+				}else {
+					statement.executeUpdate("insert into students (name,surname,phone,address)"+
+					" values ('"+ad+"','"+soyad+"','"+tel+"','"+address+"'); ");
 			 
-			 ResultSet rs = st.executeQuery("select * from students");
-				
-				while(rs.next()) {
-					int id = rs.getInt("id");
-					String description = rs.getString("name");
-					System.out.printf(
-							"id : %d, name : %s, ",id,description);
-					System.out.println("\n");
+
+					ResultSet rs = statement.executeQuery("select * from students;");
+					
+					while(rs.next()) {
+						int id = rs.getInt("id");
+						String name = rs.getString("name");
+						String surname = rs.getString("surname");
+						int mobileNumber = rs.getInt("phone");
+						String unvan = rs.getString("address");
+						System.out.println("id : " + id + ", name : " + name + ", surname : " + surname + ", mobileNumber : " +mobileNumber +
+								", unvan : " + unvan);
+					}
+					conn.close();
 				}
 				
 			
-			conn.close();
-			
-			
-		}catch (Exception e){
-			
-			
+		}catch(Exception e){
 			e.printStackTrace();
-			
-			
-			
 		}
-		
-	 
-		
 	}
-    }
-
-
-
+}
