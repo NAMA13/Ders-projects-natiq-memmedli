@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="400.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="az.developia.CoursesController">
+   <children>
+      <TextField layoutX="182.0" layoutY="85.0" />
+      <TextField layoutX="14.0" layoutY="35.0" text="Ad" />
+      <TextField layoutX="14.0" layoutY="160.0" text="Tevellud" />
+      <TextField layoutX="14.0" layoutY="85.0" text="Telefon" />
+      <TextField layoutX="14.0" layoutY="60.0" text="Soyad" />
+      <TextField layoutX="14.0" layoutY="135.0" text="Unvan" />
+      <TextField layoutX="14.0" layoutY="110.0" text="Milliyet" />
+      <TextField layoutX="182.0" layoutY="110.0" />
+      <TextField layoutX="182.0" layoutY="135.0" />
+      <TextField layoutX="182.0" layoutY="160.0" />
+      <TextField layoutX="182.0" layoutY="60.0" />
+      <TextField layoutX="182.0" layoutY="35.0" />
+      <TextField layoutX="182.0" layoutY="188.0" />
+      <TextField layoutX="14.0" layoutY="188.0" text="Courses" />
+   </children>
+</AnchorPane>
