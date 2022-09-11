@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="500.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="az.developia.SampleController">
+   <children>
+      <Button layoutX="14.0" layoutY="124.0" mnemonicParsing="false" onAction="#onSaveStudent" styleClass="my-button" text="Yadda saxla">
+         <font>
+            <Font name="Arial Bold" size="15.0" />
+         </font>
+      </Button>
+      <TextField fx:id="studentNameText" layoutX="32.0" layoutY="31.0" />
+      <Label fx:id="studentNameLabel" layoutX="222.0" layoutY="35.0" text="Label" />
+      <Button layoutX="42.0" layoutY="187.0" mnemonicParsing="false" onAction="#onOpenLoginPage" text="Logini ac">
+         <font>
+            <Font size="25.0" />
+         </font>
+      </Button>
+   </children>
+   
+    
+</AnchorPane>
