@@ -1,5 +1,5 @@
 INDEX VERSION 1.131+C:\Users\natiq\OneDrive\Documents\GitHub\Ders-projects-natiq-memmedli\JavaFXProjectAprel5\.metadata\.plugins\org.eclipse.jdt.core
-536988277.index
 2320530747.index
-954356382.index
-3712547601.index
+536988277.index
+1865797976.index
+3629590134.index

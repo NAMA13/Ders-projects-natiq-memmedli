@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="500.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.ShowCourseController">
+   <children>
+      <Label layoutX="175.0" layoutY="9.0" prefHeight="55.0" prefWidth="238.0" text="TELEBENIN KURSLARI" textAlignment="CENTER">
+         <font>
+            <Font name="Agency FB" size="36.0" />
+         </font>
+      </Label>
+      <TableView fx:id="studentsCoursesTable" layoutY="64.0" prefHeight="200.0" prefWidth="600.0">
+        <columns>
+          <TableColumn fx:id="idColumn" prefWidth="75.0" text="ID" />
+            <TableColumn fx:id="nameColumn" prefWidth="75.0" text="Ad" />
+            <TableColumn fx:id="lengthColumn" prefWidth="75.0" text="Muddet" />
+        </columns>
+      </TableView>
+   </children>
+</AnchorPane>

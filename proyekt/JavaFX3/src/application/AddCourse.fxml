@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="500.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.AddCourseController">
+   <children>
+      <VBox prefHeight="500.0" prefWidth="600.0">
+         <children>
+            <HBox prefHeight="61.0" prefWidth="600.0">
+               <children>
+                  <Label prefHeight="61.0" prefWidth="216.0" text="Telebe adi :">
+                     <font>
+                        <Font name="Berlin Sans FB" size="30.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets left="20.0" />
+                     </HBox.margin>
+                  </Label>
+                  <Label fx:id="studentName" layoutX="30.0" layoutY="10.0" prefHeight="100.0" prefWidth="303.0">
+                     <font>
+                        <Font name="Berlin Sans FB" size="30.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox layoutX="10.0" layoutY="10.0" prefHeight="60.0" prefWidth="600.0">
+               <children>
+                  <Label prefHeight="65.0" prefWidth="216.0" text="Kurslar :">
+                     <font>
+                        <Font name="Berlin Sans FB" size="30.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets left="60.0" />
+                     </HBox.margin>
+                  </Label>
+                  <ComboBox fx:id="coursesList" prefHeight="28.0" prefWidth="236.0">
+                     <HBox.margin>
+                        <Insets left="-45.0" top="20.0" />
+                     </HBox.margin>
+                  </ComboBox>
+               </children>
+            </HBox>
+            <HBox layoutX="10.0" layoutY="71.0" prefHeight="60.0" prefWidth="600.0">
+               <children>
+                  <Label prefHeight="65.0" prefWidth="216.0" text="Muddet :">
+                     <font>
+                        <Font name="Berlin Sans FB" size="30.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets left="60.0" />
+                     </HBox.margin>
+                  </Label>
+                  <ComboBox fx:id="courseLength" prefHeight="28.0" prefWidth="236.0">
+                     <HBox.margin>
+                        <Insets left="-45.0" top="20.0" />
+                     </HBox.margin>
+                  </ComboBox>
+               </children>
+            </HBox>
+            <Button mnemonicParsing="false" onAction="#saveStudentCourse" prefHeight="35.0" prefWidth="140.0" text="Yadda Saxla!">
+               <font>
+                  <Font name="Berlin Sans FB Demi Bold" size="19.0" />
+               </font>
+               <VBox.margin>
+                  <Insets left="50.0" top="20.0" />
+               </VBox.margin>
+            </Button>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>
