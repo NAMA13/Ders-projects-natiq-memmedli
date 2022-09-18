@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane prefHeight="500.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="az.developia.AddCourseController">
+   <children>
+      <VBox layoutX="23.0" layoutY="14.0" prefHeight="477.0" prefWidth="468.0">
+         <children>
+            <HBox prefHeight="36.0" prefWidth="680.0" spacing="8.0">
+               <children>
+                  <Label alignment="CENTER_RIGHT" prefHeight="31.0" prefWidth="167.0" text="Telebe adi : ">
+                     <font>
+                        <Font name="Berlin Sans FB Demi Bold" size="27.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="studentName" alignment="CENTER_RIGHT" layoutX="15.0" layoutY="15.0" prefHeight="31.0" prefWidth="273.0">
+                     <font>
+                        <Font name="Berlin Sans FB Demi Bold" size="22.0" />
+                     </font>
+                  </Label>
+               </children>
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
+            </HBox>
+            <HBox layoutX="10.0" layoutY="10.0" prefHeight="36.0" prefWidth="680.0" spacing="8.0">
+               <children>
+                  <Label alignment="CENTER_RIGHT" prefHeight="31.0" prefWidth="167.0" text="Kurslar : ">
+                     <font>
+                        <Font name="Berlin Sans FB Demi Bold" size="27.0" />
+                     </font>
+                  </Label>
+                  <ComboBox fx:id="coursesList" prefHeight="25.0" prefWidth="206.0" />
+               </children>
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
+            </HBox>
+            <HBox layoutX="10.0" layoutY="51.0" prefHeight="36.0" prefWidth="680.0" spacing="8.0">
+               <children>
+                  <Label alignment="CENTER_RIGHT" prefHeight="31.0" prefWidth="167.0" text="Muddet : ">
+                     <font>
+                        <Font name="Berlin Sans FB Demi Bold" size="27.0" />
+                     </font>
+                  </Label>
+                  <ComboBox fx:id="courseLength" prefHeight="25.0" prefWidth="175.0" />
+                  <Label alignment="CENTER_RIGHT" layoutX="15.0" layoutY="15.0" prefHeight="31.0" prefWidth="50.0" text="Ay">
+                     <font>
+                        <Font name="Berlin Sans FB Demi Bold" size="27.0" />
+                     </font>
+                  </Label>
+               </children>
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
+            </HBox>
+            <HBox layoutX="10.0" layoutY="92.0" prefHeight="36.0" prefWidth="680.0" spacing="8.0">
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
+               <children>
+                  <Button mnemonicParsing="false" onAction="#saveStudentCourse" text="Yadda saxla">
+                     <font>
+                        <Font name="System Bold" size="17.0" />
+                     </font>
+                  </Button>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

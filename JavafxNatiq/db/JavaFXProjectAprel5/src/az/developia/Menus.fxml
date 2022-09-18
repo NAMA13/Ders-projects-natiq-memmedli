@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="500.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="az.developia.MenusController">
+   <children>
+      <MenuBar>
+        <menus>
+          <Menu mnemonicParsing="false" text="Əsas">
+            <items>
+              <MenuItem mnemonicParsing="false" onAction="#openStudentsPage" text="Tələbələr" />
+                  <MenuItem mnemonicParsing="false" text="Kurslar" />
+                  <MenuItem mnemonicParsing="false" text="Bağla" />
+                  <Menu mnemonicParsing="false" text="Əlavə">
+                    <items>
+                      <MenuItem mnemonicParsing="false" text="Java" />
+                        <MenuItem mnemonicParsing="false" text="HTML" />
+                    </items>
+                  </Menu>
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Dillər">
+            <items>
+              <MenuItem mnemonicParsing="false" text="İngilis" />
+                  <MenuItem mnemonicParsing="false" text="Azərbaycan" />
+                  <MenuItem mnemonicParsing="false" text="Türk" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Kömək">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Ümumi məlumat" />
+                  <MenuItem mnemonicParsing="false" text="Ərtaflı" />
+                  <MenuItem mnemonicParsing="false" onAction="#playSound" text="Səs" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+   </children>
+</AnchorPane>

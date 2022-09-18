@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.geometry.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="600.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="az.developia.StudentCoursesController">
+   <children>
+      <VBox layoutX="5.0" layoutY="23.0" prefHeight="558.0" prefWidth="690.0">
+         <children>
+            
+             <TableView fx:id="studentCoursesTable" prefHeight="200.0" prefWidth="690.0">
+              <columns>
+                <TableColumn fx:id="idColumn" prefWidth="60.0" text="ID" />
+                <TableColumn fx:id="nameColumn" prefWidth="78.0" text="Ad" />
+                  <TableColumn fx:id="lengthColumn" prefWidth="87.0" text="Muddet" />
+                   
+              </columns>
+            </TableView>
+            
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

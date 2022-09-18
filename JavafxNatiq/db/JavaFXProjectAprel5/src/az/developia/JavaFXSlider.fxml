@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane prefHeight="400.0" prefWidth="400.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="az.developia.controller.JavaFXSliderController">
+   <children>
+      <Slider fx:id="mySlider" layoutX="25.0" layoutY="82.0" majorTickUnit="10.0" minorTickCount="5" onDragDone="#dragDone" onMouseClicked="#onMouseClicked" onMouseDragged="#onMouseDragged" onMouseMoved="#onMouseMoved" onRotate="#onRotate" onScroll="#onScroll" onSwipeLeft="#onSwipeLeft" onSwipeRight="#onSwipeRight" prefHeight="65.0" prefWidth="316.0" showTickLabels="true" showTickMarks="true" AnchorPane.bottomAnchor="253.0" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="59.0" AnchorPane.topAnchor="82.0" />
+      <Circle fx:id="myCircle" fill="DODGERBLUE" layoutX="189.0" layoutY="263.0" radius="50.0" stroke="BLACK" strokeType="INSIDE" />
+   </children>
+</AnchorPane>

@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.geometry.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="600.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="az.developia.StudentsController">
+   <children>
+      <VBox layoutX="5.0" layoutY="23.0" prefHeight="558.0" prefWidth="690.0">
+         <children>
+            <HBox prefHeight="36.0" prefWidth="680.0" spacing="8.0">
+               <children>
+                  <Label alignment="CENTER_RIGHT" prefHeight="36.0" prefWidth="100.0" text="Ad">
+                     <font>
+                        <Font name="Berlin Sans FB Demi Bold" size="27.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="name">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </TextField>
+                  <Label alignment="CENTER_RIGHT" prefHeight="36.0" prefWidth="100.0" text="Soyad">
+                     <font>
+                        <Font name="Berlin Sans FB Demi Bold" size="27.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="surname">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </TextField>
+               </children>
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
+            </HBox>
+            <HBox layoutX="10.0" layoutY="10.0" prefHeight="36.0" prefWidth="680.0" spacing="8.0">
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
+               <children>
+                  <Label alignment="CENTER_RIGHT" prefHeight="31.0" prefWidth="100.0" text="Telefon">
+                     <font>
+                        <Font name="Berlin Sans FB Demi Bold" size="27.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="mobile">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </TextField>
+                  <Label alignment="CENTER_RIGHT" prefHeight="36.0" prefWidth="100.0" text="Unvan">
+                     <font>
+                        <Font name="Berlin Sans FB Demi Bold" size="27.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="address">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </TextField>
+               </children>
+            </HBox>
+            <HBox layoutX="10.0" layoutY="57.0" prefHeight="36.0" prefWidth="680.0" spacing="8.0">
+               <children>
+                  <Label alignment="CENTER_RIGHT" prefHeight="31.0" prefWidth="110.0" text="Tevellud">
+                     <font>
+                        <Font name="Berlin Sans FB Demi Bold" size="27.0" />
+                     </font>
+                  </Label>
+                  <DatePicker fx:id="studentBirthday">
+                     <HBox.margin>
+                        <Insets top="5.0" />
+                     </HBox.margin>
+                  </DatePicker>
+                  <Label alignment="CENTER_RIGHT" layoutX="15.0" layoutY="15.0" prefHeight="31.0" prefWidth="110.0" text="Milliyyet">
+                     <font>
+                        <Font name="Berlin Sans FB Demi Bold" size="27.0" />
+                     </font>
+                  </Label>
+                  <ComboBox fx:id="studentNationality" prefWidth="150.0" />
+               </children>
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
+            </HBox>
+            <HBox layoutX="10.0" layoutY="57.0" prefHeight="59.0" prefWidth="690.0" spacing="8.0">
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
+               <children>
+                  <Button mnemonicParsing="false" onAction="#onSave" prefHeight="36.0" prefWidth="152.0" text="Yadda Saxla!">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="18.0" />
+                     </font>
+                  </Button>
+                  <Button layoutX="15.0" layoutY="15.0" mnemonicParsing="false" onAction="#onAddNameToListView" prefHeight="36.0" prefWidth="192.0" text="Siyahiya elave et">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="18.0" />
+                     </font>
+                  </Button>
+                  <Button layoutX="188.0" layoutY="15.0" mnemonicParsing="false" onAction="#deleteName" prefHeight="36.0" prefWidth="59.0" text="Sil">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="18.0" />
+                     </font>
+                  </Button>
+                  <Button layoutX="375.0" layoutY="15.0" mnemonicParsing="false" onAction="#selectName" prefHeight="36.0" prefWidth="59.0" text="Seç">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="18.0" />
+                     </font>
+                  </Button>
+                  <Button layoutX="442.0" layoutY="15.0" mnemonicParsing="false" onAction="#editName" prefHeight="36.0" prefWidth="109.0" text="Redakte">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="18.0" />
+                     </font>
+                  </Button>
+               </children>
+            </HBox>
+            <ListView fx:id="myListView" prefHeight="64.0" prefWidth="690.0" />
+            <HBox prefHeight="36.0" prefWidth="680.0" spacing="8.0">
+               <children>
+                  <Label fx:id="rowCountLabel" prefHeight="31.0" prefWidth="231.0" text="Setir sayi">
+                     <font>
+                        <Font name="Berlin Sans FB Demi Bold" size="27.0" />
+                     </font>
+                  </Label>
+                  <Button mnemonicParsing="false" onAction="#showImage" prefHeight="34.0" prefWidth="173.0" text="Sekili goster">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="18.0" />
+                     </font>
+                  </Button>
+               </children>
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
+            </HBox>
+            <ImageView fx:id="myImage" fitHeight="200.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
+            <Label fx:id="imageUrl" prefHeight="31.0" prefWidth="464.0" text="url">
+               <font>
+                  <Font name="Berlin Sans FB Demi Bold" size="27.0" />
+               </font>
+            </Label>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>
