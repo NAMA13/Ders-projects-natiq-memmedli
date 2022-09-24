@@ -1,18 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.image.*?>
-<?import javafx.geometry.*?>
-<?import java.lang.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="600.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="az.developia.StudentsTableController">
+<AnchorPane prefHeight="600.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="az.developia.StudentsTableController">
    <children>
       <VBox layoutX="5.0" layoutY="23.0" prefHeight="558.0" prefWidth="690.0">
          <children>
@@ -183,20 +188,20 @@
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </padding>
             </HBox>
-            
-             <TableView fx:id="studentsTable" prefHeight="200.0" prefWidth="690.0">
-              <columns>
-                <TableColumn fx:id="idColumn" prefWidth="60.0" text="ID" />
-                <TableColumn fx:id="nameColumn" prefWidth="78.0" text="Ad" />
+            <TableView fx:id="studentsTable" layoutX="10.0" layoutY="321.0" prefHeight="200.0" prefWidth="690.0">
+               <columns>
+                  <TableColumn fx:id="idColumn" prefWidth="60.0" text="ID" />
+                  <TableColumn fx:id="nameColumn" prefWidth="78.0" text="Ad" />
                   <TableColumn fx:id="surnameColumn" prefWidth="87.0" text="Soyad" />
                   <TableColumn fx:id="phoneColumn" prefWidth="87.0" text="Telefon" />
                   <TableColumn fx:id="birthdayColumn" prefWidth="101.0" text="Tevellud" />
                   <TableColumn fx:id="nationalityColumn" prefWidth="124.0" text="Milliyyet" />
                   <TableColumn fx:id="addressColumn" prefWidth="135.0" text="Unvan" />
-              </columns>
+               </columns>
             </TableView>
             
          </children>
       </VBox>
+      <Slider fx:id="sliderfx" layoutX="5.0" layoutY="7.0" onMouseClicked="#clickedOpacity" onMouseDragged="#draggedOpacity" />
    </children>
 </AnchorPane>

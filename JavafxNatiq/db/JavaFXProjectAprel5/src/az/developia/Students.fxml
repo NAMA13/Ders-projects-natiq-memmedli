@@ -1,20 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.image.*?>
-<?import javafx.geometry.*?>
-<?import java.lang.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="600.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="az.developia.StudentsController">
+<AnchorPane prefHeight="600.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="az.developia.StudentsController">
    <children>
-      <VBox layoutX="5.0" layoutY="23.0" prefHeight="558.0" prefWidth="690.0">
+      <VBox layoutX="5.0" layoutY="23.0" prefHeight="582.0" prefWidth="690.0">
          <children>
             <HBox prefHeight="36.0" prefWidth="680.0" spacing="8.0">
                <children>
@@ -77,7 +78,7 @@
                         <Font name="Berlin Sans FB Demi Bold" size="27.0" />
                      </font>
                   </Label>
-                  <DatePicker fx:id="studentBirthday">
+                  <DatePicker fx:id="studentBirthday" prefHeight="26.0" prefWidth="189.0">
                      <HBox.margin>
                         <Insets top="5.0" />
                      </HBox.margin>
@@ -87,7 +88,7 @@
                         <Font name="Berlin Sans FB Demi Bold" size="27.0" />
                      </font>
                   </Label>
-                  <ComboBox fx:id="studentNationality" prefWidth="150.0" />
+                  <ComboBox fx:id="studentNationality" prefHeight="31.0" prefWidth="187.0" promptText="Milliyetini bildir" />
                </children>
                <padding>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
@@ -125,15 +126,15 @@
                   </Button>
                </children>
             </HBox>
-            <ListView fx:id="myListView" prefHeight="64.0" prefWidth="690.0" />
-            <HBox prefHeight="36.0" prefWidth="680.0" spacing="8.0">
+            <ListView fx:id="myListView" prefHeight="89.0" prefWidth="690.0" />
+            <HBox prefHeight="18.0" prefWidth="690.0" spacing="8.0">
                <children>
-                  <Label fx:id="rowCountLabel" prefHeight="31.0" prefWidth="231.0" text="Setir sayi">
+                  <Label fx:id="rowCountLabel" prefHeight="54.0" prefWidth="231.0" text="Setir sayi">
                      <font>
                         <Font name="Berlin Sans FB Demi Bold" size="27.0" />
                      </font>
                   </Label>
-                  <Button mnemonicParsing="false" onAction="#showImage" prefHeight="34.0" prefWidth="173.0" text="Sekili goster">
+                  <Button mnemonicParsing="false" onAction="#showImage" prefHeight="35.0" prefWidth="181.0" text="Sekili goster">
                      <font>
                         <Font name="Arial Rounded MT Bold" size="18.0" />
                      </font>
@@ -143,12 +144,13 @@
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </padding>
             </HBox>
-            <ImageView fx:id="myImage" fitHeight="200.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="myImage" fitHeight="95.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
             <Label fx:id="imageUrl" prefHeight="31.0" prefWidth="464.0" text="url">
                <font>
                   <Font name="Berlin Sans FB Demi Bold" size="27.0" />
                </font>
             </Label>
+            <HBox prefHeight="132.0" prefWidth="690.0" />
          </children>
       </VBox>
    </children>

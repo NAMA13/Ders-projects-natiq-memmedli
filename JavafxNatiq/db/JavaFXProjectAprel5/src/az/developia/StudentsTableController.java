@@ -32,6 +32,7 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.SelectionMode;
+import javafx.scene.control.Slider;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -95,6 +96,9 @@ public class StudentsTableController implements Initializable {
 
 	private boolean updateMode = false;
 	private int selectedStudentId = 0;
+	
+	@FXML
+	private Slider sliderfx;
 
 	@FXML
 	private void onSave() {
@@ -398,5 +402,17 @@ public class StudentsTableController implements Initializable {
 		}
 
 	}
+	@FXML
+	private void clickedOpacity () {
+		setTablesOpacity(sliderfx.getValue());
+	}
+	@FXML
+	private void draggedOpacity () {
+		setTablesOpacity(sliderfx.getValue());
+	}
 
+	private void setTablesOpacity (double opacity){
+		studentsTable.setOpacity(opacity);
+	}
+	
 }
