@@ -291,11 +291,7 @@ public class StudentsTableController implements Initializable {
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			try {
-				conn.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
+			 
 		}
 
 	}
