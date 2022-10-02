@@ -25,7 +25,7 @@
                         <Font name="Calibri" size="23.0" />
                      </font>
                   </Label>
-                  <TextField />
+                  <TextField fx:id="usr" />
                   <Label layoutX="10.0" layoutY="10.0" prefHeight="26.0" prefWidth="107.0" text="Password">
                      <font>
                         <Font name="Calibri Light" size="23.0" />
@@ -43,7 +43,8 @@
             </HBox>
             <HBox prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Button fx:id="button_login" mnemonicParsing="false" onMouseClicked="#OnClickAccount" text="Create account" />
+                  <Button mnemonicParsing="false" onAction="#OnClickAccount" onMouseClicked="#OnClickAccount" text="Create account" />
+                  <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#onLogin" onMouseClicked="#OnClickAccount" text="Login" />
                </children>
             </HBox>
          </children>

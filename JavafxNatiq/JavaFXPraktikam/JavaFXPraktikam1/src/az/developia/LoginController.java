@@ -14,10 +14,7 @@ import com.mysql.cj.x.protobuf.MysqlxNotice.Warning.Level;
 
 import javafx.application.Application;
 
-public class LoginController {
-	@FXML
-	private TextField button_login;
-	
+public class LoginController {	
 	@FXML
 	private void OnClickAccount () {
 		 try {
@@ -31,6 +28,10 @@ public class LoginController {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+		
+	}
+	@FXML
+	private void onLogin() {
 		
 	}
 	

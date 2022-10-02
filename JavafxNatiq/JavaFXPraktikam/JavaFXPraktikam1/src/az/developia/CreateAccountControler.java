@@ -16,4 +16,4 @@ public class CreateAccountControler {
 	private TextField username;
 	@FXML
 	private TextField password;
-	}
+}
