@@ -1,18 +1,14 @@
 package application;
 
-import java.awt.TextField;
-import java.sql.Connection;
+ 
+import java.net.URL;
 import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.Statement;
+import java.util.ResourceBundle;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.ToggleGroup;
-import javafx.scene.layout.VBox;
+import javafx.scene.control.TextField;
 
 public class AddQuestionController implements Initializable {
 	
@@ -33,17 +29,27 @@ public class AddQuestionController implements Initializable {
 	
 	@FXML
     private void confirmquestion () {
-		try {
-			Class.forName("com.mysql.cj.jdbc.Driver");
-			Connection conn2 = DriverManager.getConnection(
-					"jdbc:mysql://localhost:3306/aprel5-test?useSSL=false&serverTimezone=UTC", "root", "1234");
+		
+		  try { Class.forName("com.mysql.cj.jdbc.Driver");
+		  Connection conn2 = DriverManager.getConnection(
+		  "jdbc:mysql://localhost:3306/aprel5-test?useSSL=false&serverTimezone=UTC",
+		  "root", "1234");
+		  
+		  Statement statement = conn2.createStatement();
+		  statement.executeUpdate("insert into questions values ("+ inputquestion.getText()
+		  +")"); ResultSet rs2 =
+		  statement.executeQuery("select * from answers where question_id=" +
+		  questionId); statement.executeUpdate("insert into answers ("+
+		  answerone.getText() +"," + "0" +);
+		  
+		  } catch (Exception e) { e.printStackTrace(); }
+		 
+	}
 
-			Statement statement = conn2.createStatement();
-			ResultSet rs = statement.executeQuery("insert into questions ("+ inputquestion.getText() +")");
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+	@Override
+	public void initialize(URL arg0, ResourceBundle arg1) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 
