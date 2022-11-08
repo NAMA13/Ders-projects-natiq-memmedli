@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="700.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="todolist.controller.MainPageController">
+   <children>
+      <VBox prefHeight="700.0" prefWidth="700.0">
+         <children>
+            <HBox prefHeight="47.0" prefWidth="700.0">
+               <children>
+                  <VBox alignment="CENTER_LEFT" prefHeight="36.0" prefWidth="330.0">
+                     <children>
+                        <Label fx:id="username" text="Istifadeci adi">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets left="15.0" />
+                           </VBox.margin>
+                        </Label>
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER_RIGHT" prefHeight="36.0" prefWidth="372.0">
+                     <children>
+                        <Button fx:id="deleteAccount" mnemonicParsing="false" onAction="#deleteAccount" text="Hesabi Sil">
+                           <VBox.margin>
+                              <Insets right="15.0" />
+                           </VBox.margin>
+                        </Button>
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="14.0" prefWidth="700.0">
+               <children>
+                  <Line endX="500.0" startX="-100.0" />
+               </children>
+            </HBox>
+            <HBox prefHeight="147.0" prefWidth="700.0">
+               <children>
+                  <HBox prefHeight="131.0" prefWidth="332.0">
+                     <children>
+                        <VBox alignment="TOP_RIGHT" prefHeight="100.0" prefWidth="354.0">
+                           <children>
+                              <Label text="Tapsirigin adi">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets top="9.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <Label text="Gunu">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets top="9.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <Label text="Kateqoriya">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets top="9.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <Label text="Qeydiyyat">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets top="9.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <Label text="Status">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets top="9.0" />
+                                 </VBox.margin>
+                              </Label>
+                           </children>
+                        </VBox>
+                        <VBox alignment="CENTER" prefHeight="168.0" prefWidth="242.0">
+                           <children>
+                              <Line endX="100.0" endY="-48.79945373535156" startX="99.77925109863281" startY="98.49345397949219">
+                                 <VBox.margin>
+                                    <Insets bottom="19.0" />
+                                 </VBox.margin>
+                              </Line>
+                           </children>
+                        </VBox>
+                        <VBox prefHeight="100.0" prefWidth="400.0">
+                           <children>
+                              <TextField fx:id="taskName" prefWidth="44.0" />
+                              <TextField fx:id="taskLength" onKeyReleased="#isBiggerThanOne">
+                                 <VBox.margin>
+                                    <Insets top="5.0" />
+                                 </VBox.margin>
+                              </TextField>
+                              <HBox prefHeight="38.0" prefWidth="189.0">
+                                 <children>
+                                    <ComboBox fx:id="taskCategory" prefHeight="26.0" prefWidth="122.0" />
+                                    <Button mnemonicParsing="false" onAction="#addCategory" prefHeight="26.0" prefWidth="26.0" text="+">
+                                       <HBox.margin>
+                                          <Insets left="9.0" />
+                                       </HBox.margin></Button>
+                                    <Button mnemonicParsing="false" onAction="#deleteCategory" prefHeight="26.0" prefWidth="26.0" text="-" />
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets top="5.0" />
+                                 </VBox.margin>
+                              </HBox>
+                              <HBox prefHeight="18.0" prefWidth="184.0">
+                                 <children>
+                                    <DatePicker fx:id="taskDatePicker" prefHeight="26.0" prefWidth="199.0" />
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets top="5.0" />
+                                 </VBox.margin>
+                              </HBox>
+                              <HBox prefHeight="100.0" prefWidth="200.0">
+                                 <children>
+                                    <ComboBox fx:id="taskStatus" prefHeight="26.0" prefWidth="302.0">
+                                       <HBox.margin>
+                                          <Insets top="5.0" />
+                                       </HBox.margin>
+                                    </ComboBox>
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+                  <VBox prefHeight="100.0" prefWidth="372.0">
+                     <children>
+                        <VBox alignment="CENTER" prefHeight="41.0" prefWidth="369.0">
+                           <children>
+                              <Label text="Axtarış">
+                                 <font>
+                                    <Font name="System Bold" size="15.0" />
+                                 </font>
+                              </Label>
+                              <Line endX="100.0" startX="-100.0">
+                                 <VBox.margin>
+                                    <Insets bottom="5.0" top="5.0" />
+                                 </VBox.margin>
+                              </Line>
+                              <TextField fx:id="searchText" onKeyReleased="#searchTask" />
+                           </children>
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                        </VBox>
+                        <HBox alignment="CENTER" prefHeight="18.0" prefWidth="305.0">
+                           <children>
+                              <Line endX="220.09291076660156" endY="-0.41421815752983093" startX="-100.0" />
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER_RIGHT" prefHeight="66.0" prefWidth="305.0">
+                           <children>
+                              <VBox alignment="CENTER_LEFT" prefHeight="66.0" prefWidth="82.0">
+                                 <children>
+                                    <Button mnemonicParsing="false" onAction="#editTask" prefHeight="25.0" prefWidth="71.0" text="redakte" />
+                                    <Button mnemonicParsing="false" onAction="#deleteTask" prefHeight="25.0" prefWidth="71.0" text="sil">
+                                       <VBox.margin>
+                                          <Insets top="5.0" />
+                                       </VBox.margin></Button>
+                                 </children>
+                              </VBox>
+                              <VBox alignment="CENTER_LEFT" prefHeight="66.0" prefWidth="138.0">
+                                 <children>
+                                    <ComboBox fx:id="filtercombox" onAction="#filter" prefWidth="150.0" promptText="Filter" />
+                                    <Button fx:id="saveButton" mnemonicParsing="false" onAction="#onSave" prefHeight="25.0" prefWidth="98.0" text="Qeydiyyat Et">
+                                       <VBox.margin>
+                                          <Insets top="5.0" />
+                                       </VBox.margin></Button>
+                                 </children>
+                              </VBox>
+                              <VBox alignment="CENTER" prefHeight="66.0" prefWidth="18.0">
+                                 <children>
+                                    <Line endX="100.0" startX="100.0" startY="60.0" />
+                                 </children>
+                                 <padding>
+                                    <Insets left="5.0" right="5.0" />
+                                 </padding>
+                              </VBox>
+                              <VBox alignment="CENTER" prefHeight="66.0" prefWidth="82.0">
+                                 <children>
+                                    <RadioButton fx:id="deleteAll" mnemonicParsing="false" text="All">
+                                       <VBox.margin>
+                                          <Insets />
+                                       </VBox.margin>
+                                    </RadioButton>
+                                    <Button mnemonicParsing="false" onAction="#searchTask" text="Search">
+                                       <VBox.margin>
+                                          <Insets top="8.0" />
+                                       </VBox.margin>
+                                    </Button>
+                                 </children>
+                              </VBox>
+                           </children>
+                        </HBox>
+                     </children>
+                     <padding>
+                        <Insets left="50.0" right="15.0" />
+                     </padding>
+                  </VBox>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="11.0" prefWidth="700.0">
+               <children>
+                  <Line endX="541.6929931640625" endY="-2.070946216583252" startX="-100.0" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="326.0" prefWidth="700.0">
+               <children>
+                  <TableView fx:id="taskTable" prefHeight="326.0" prefWidth="672.0">
+                    <columns>
+                      <TableColumn fx:id="idColumn" prefWidth="75.0" text="id" />
+                      <TableColumn fx:id="adColumn" prefWidth="75.0" text="ad" />
+                        <TableColumn fx:id="gunColumn" prefWidth="75.0" text="gun" />
+                        <TableColumn fx:id="qeydiyyatColumn" prefWidth="82.40003967285156" text="qeydiyyat" />
+                        <TableColumn fx:id="userIdColumn" prefWidth="67.99993896484375" text="user-id" />
+                        <TableColumn fx:id="categoryColumn" prefWidth="75.0" text="category" />
+                        <TableColumn fx:id="statusColumn" prefWidth="75.0" text="status" />
+                    </columns>
+                  </TableView>
+               </children>
+               <VBox.margin>
+                  <Insets top="15.0" />
+               </VBox.margin>
+            </HBox>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

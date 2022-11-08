@@ -1,6 +1,6 @@
 package todolist.com;
 
-import java.sql.;
+import java.sql.*;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;

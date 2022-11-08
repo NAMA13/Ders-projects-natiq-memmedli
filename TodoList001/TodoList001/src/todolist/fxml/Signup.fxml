@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="500.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="todolist.controller.SignupController">
+   <children>
+      <VBox prefHeight="500.0" prefWidth="700.0">
+         <children>
+            <HBox alignment="CENTER" prefHeight="63.0" prefWidth="694.0">
+               <children>
+                  <Label text="Login &amp; Sing up">
+                     <font>
+                        <Font name="Harrington" size="34.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="20.0" prefWidth="762.0">
+               <children>
+                  <Line endX="100.0" startX="-445.08795166015625" />
+               </children>
+            </HBox>
+            <HBox prefHeight="208.0" prefWidth="700.0">
+               <children>
+                  <VBox prefHeight="208.0" prefWidth="346.0">
+                     <children>
+                        <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0">
+                           <children>
+                              <Label text="Istifadeci adi">
+                                 <font>
+                                    <Font name="System Bold" size="27.0" />
+                                 </font>
+                              </Label>
+                              <TextField fx:id="usernameText">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </TextField>
+                           </children>
+                           <padding>
+                              <Insets left="15.0" right="15.0" />
+                           </padding>
+                        </VBox>
+                        <Line endX="237.69288635253906" endY="0.09290848672389984" startX="-100.0">
+                           <VBox.margin>
+                              <Insets left="15.0" right="15.0" />
+                           </VBox.margin>
+                        </Line>
+                        <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0">
+                           <children>
+                              <Label text="Sifre">
+                                 <font>
+                                    <Font name="System Bold" size="27.0" />
+                                 </font>
+                              </Label>
+                              <PasswordField fx:id="passwordText">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </PasswordField>
+                           </children>
+                           <padding>
+                              <Insets left="15.0" right="15.0" />
+                           </padding>
+                        </VBox>
+                     </children>
+                  </VBox>
+                  <Line endX="100.0" startX="100.89287567138672" startY="222.49288940429688" />
+                  <VBox prefHeight="208.0" prefWidth="367.0">
+                     <children>
+                        <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="361.0">
+                           <children>
+                              <Label text="Ad">
+                                 <font>
+                                    <Font name="System Bold" size="27.0" />
+                                 </font>
+                              </Label>
+                              <TextField fx:id="usernameName">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </TextField>
+                           </children>
+                           <padding>
+                              <Insets left="15.0" right="15.0" />
+                           </padding>
+                        </VBox>
+                        <Line endX="258.492919921875" endY="0.892896294593811" startX="-100.0">
+                           <VBox.margin>
+                              <Insets left="15.0" right="15.0" />
+                           </VBox.margin>
+                        </Line>
+                        <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0">
+                           <children>
+                              <Label text="Soyad">
+                                 <font>
+                                    <Font name="System Bold" size="27.0" />
+                                 </font>
+                              </Label>
+                              <TextField fx:id="usersurname">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </TextField>
+                           </children>
+                           <padding>
+                              <Insets left="15.0" right="15.0" />
+                           </padding>
+                        </VBox>
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="18.0" prefWidth="762.0">
+               <children>
+                  <Line endX="631.2928466796875" endY="1.242582082748413" startX="-100.0" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <VBox alignment="CENTER" prefHeight="100.0" prefWidth="170.0">
+                     <children>
+                        <Button mnemonicParsing="false" onAction="#onSignup" prefHeight="29.0" prefWidth="159.0" text="Hesab yarat">
+                           <font>
+                              <Font name="System Bold" size="19.0" />
+                           </font>
+                        </Button>
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER" prefHeight="100.0" prefWidth="15.0">
+                     <children>
+                        <Line endX="100.0" startX="100.0" startY="100.0" />
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER" prefHeight="102.0" prefWidth="96.0">
+                     <children>
+                        <Button mnemonicParsing="false" onAction="#onLogin" text="Giris et">
+                           <font>
+                              <Font name="System Bold" size="19.0" />
+                           </font>
+                        </Button>
+                     </children>
+                     <HBox.margin>
+                        <Insets right="13.0" />
+                     </HBox.margin>
+                  </VBox>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>
