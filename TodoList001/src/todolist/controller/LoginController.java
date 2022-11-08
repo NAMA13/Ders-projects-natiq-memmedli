@@ -76,7 +76,7 @@ public class LoginController {
 		try {
 
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/todolist1234",
+			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/todolist1234?useSSL=false&serverTimezone=UTC",
 					"root", "1234");
 			java.sql.Statement statement = conn.createStatement();
 

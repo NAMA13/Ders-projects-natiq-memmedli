@@ -103,15 +103,13 @@ public class MainPageController implements Initializable{
 	
 	
 
-	String user = LoginController.loginUsername;
+	public String user = LoginController.loginUsername;
 	
 	
 	
 	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		
-		rowCountLabel.setText("setir sayi" + taskTable.getItems().size());
 		
 		taskStatus.getItems().add("Aktiv");
 		taskStatus.getItems().add("Passiv");
@@ -124,6 +122,8 @@ public class MainPageController implements Initializable{
 		filtercombox.getItems().add("Gozlemede");
 //		taskStatus.getSelectionModel().select(0);
 //		filtercombox.getSelectionModel().getSelectedItem();
+		
+		
 		
 		username.setText(user);
 		loadCategories();
@@ -286,7 +286,7 @@ public class MainPageController implements Initializable{
 			
 	
 			statement.executeUpdate("insert into tasks "
-					+ "(name,category,qeydiyyat,gun,userId,status)"
+					+ "(exerciseName,exerciseCategory,exerciseRegisty,exerciseDay,userId,exerciseStatus)"
 					+ " values ('" + ad + "','" + category + "','" + qeydiyyat + "','" + gun + "','" + user_id + "','" + status + "'); ");
 	
 		} catch (Exception e) {
@@ -393,7 +393,7 @@ public class MainPageController implements Initializable{
 	}
 	@FXML
 	private void addCategory(ActionEvent event) {
-		String n = JOptionPane.showInputDialog("Milliyeti yaz");
+		String n = JOptionPane.showInputDialog("Kataqoryani yaz!");
 		MainPageService.addCategory(n);
 		loadCategories();
 
@@ -413,9 +413,7 @@ public class MainPageController implements Initializable{
 		ObservableList<Task> list = FXCollections.observableArrayList();
 		list.addAll(MainPageService.loadTasks(s));
 		
-		
 		taskTable.setItems(list);
-		rowCountLabel.setText("setir sayi" + taskTable.getItems().size());
 
 	}
 	
@@ -424,9 +422,9 @@ public class MainPageController implements Initializable{
 		String search = searchText.getText();
 		String selected = filtercombox.getSelectionModel().getSelectedItem();
 		if(selected == null) {
-			loadTasks(" and concat(name) like '%" + search + "%';");
+			loadTasks(" and exerciseName = '" + search + "';");
 		}else {
-			loadTasks(" and concat(name, status) like '%" + search + selected + "%';");
+			loadTasks(" and concat(exerciseName, exerciseStatus) like '%" + search + selected + "%';");
 		}
 
 		
@@ -436,7 +434,7 @@ public class MainPageController implements Initializable{
 	private void filter() {
 	 	String filteredItem = filtercombox.getSelectionModel().getSelectedItem();
 
-		loadTasks(" and status = " + filteredItem +";");
+		loadTasks(" and exerciseStatus = " + filteredItem +";");
 
 	}
 	@FXML

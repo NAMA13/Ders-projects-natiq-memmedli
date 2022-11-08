@@ -31,7 +31,7 @@ public class Utility {
 		try {
 
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/todolist-8047?useSSL=false&serverTimezone=UTC",
+			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/todolist1234?useSSL=false&serverTimezone=UTC",
 					"root", "1234");
 			Statement statement = conn.createStatement();
 			statement.executeUpdate(query);

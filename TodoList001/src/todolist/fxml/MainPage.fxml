@@ -162,7 +162,7 @@
                                     <Insets bottom="5.0" top="5.0" />
                                  </VBox.margin>
                               </Line>
-                              <TextField fx:id="searchText" onKeyReleased="#searchTask" />
+                              <TextField fx:id="searchText" />
                            </children>
                            <VBox.margin>
                               <Insets />

@@ -26,7 +26,7 @@ public class MainPageRepository {
 		try {
 
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/todolist-8047?useSSL=false&serverTimezone=UTC",
+			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/todolist1234?useSSL=false&serverTimezone=UTC",
 					"root", "1234");
 			Statement statement = conn.createStatement();
 
@@ -34,15 +34,16 @@ public class MainPageRepository {
 					"select * from tasks where userId =" + LoginController.loginId + " " + p);
 
 			while (rs.next()) {
+				  
 				Integer id = rs.getInt("id");
-				String name = rs.getString("name");
-				String gun = rs.getString("gun");
-				Date d = rs.getDate("qeydiyyat");
+				String name = rs.getString("exerciseName");
+				String gun = rs.getString("exerciseDay");
+				Date d = rs.getDate("exerciseRegisty");
 				
-				String category = rs.getString("category");
+				String category = rs.getString("exerciseCategory");
 				Integer userId = rs.getInt("userId");
 				
-				String status = rs.getString("status");
+				String status = rs.getString("exerciseStatus");
 				LocalDate qeydiyyat = null;
 				if (d == null) {
 
@@ -70,24 +71,12 @@ public class MainPageRepository {
 	}
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	public void addCategory(String n) {
 		Connection conn = null; 
 		try {
 
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/todolist-8047?useSSL=false&serverTimezone=UTC",
+			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/todolist1234?useSSL=false&serverTimezone=UTC",
 					"root", "1234");
 			Statement statement = conn.createStatement();
 			if(n == null) {
@@ -129,7 +118,7 @@ public class MainPageRepository {
 		try {
 
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/todolist-8047?useSSL=false&serverTimezone=UTC",
+			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/todolist1234?useSSL=false&serverTimezone=UTC",
 					"root", "1234");
 			Statement statement = conn.createStatement();
 			statement.executeUpdate("delete from categories where id="+id);
