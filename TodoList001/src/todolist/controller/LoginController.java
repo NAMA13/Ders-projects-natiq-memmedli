@@ -1,13 +1,11 @@
 package todolist.controller;
 
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import javax.swing.JOptionPane;
-
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -18,19 +16,16 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
-
-
 public class LoginController {
-	
+
 	public static String loginUsername;
 	public static int loginId;
-	
 
 	@FXML
 	private TextField usernameText;
 	@FXML
 	private PasswordField passwordText;
-	
+
 	@FXML
 	private void onLogin() {
 
@@ -57,7 +52,6 @@ public class LoginController {
 		}
 
 	}
-	
 
 	private boolean login(String username, String password) {
 		boolean b = false;
@@ -65,8 +59,8 @@ public class LoginController {
 		try {
 
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/todolist1234?useSSL=false&serverTimezone=UTC",
-					"root", "1234");
+			conn = DriverManager.getConnection(
+					"jdbc:mysql://localhost:3306/todolist1234?useSSL=false&serverTimezone=UTC", "root", "1234");
 			java.sql.Statement statement = conn.createStatement();
 
 			ResultSet rs = statement.executeQuery(
@@ -88,8 +82,7 @@ public class LoginController {
 		}
 		return b;
 	}
-	
-	
+
 	@FXML
 	private void onSignup() {
 
