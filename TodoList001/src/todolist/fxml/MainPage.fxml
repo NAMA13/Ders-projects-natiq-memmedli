@@ -186,7 +186,7 @@
                               </VBox>
                               <VBox alignment="CENTER_LEFT" prefHeight="66.0" prefWidth="138.0">
                                  <children>
-                                    <ComboBox fx:id="filtercombox" onAction="#filter" prefWidth="150.0" promptText="Filter" />
+                                    <ComboBox fx:id="filtercombox" prefWidth="150.0" promptText="Filter" />
                                     <Button fx:id="saveButton" mnemonicParsing="false" onAction="#onSave" prefHeight="25.0" prefWidth="98.0" text="Qeydiyyat Et">
                                        <VBox.margin>
                                           <Insets top="5.0" />

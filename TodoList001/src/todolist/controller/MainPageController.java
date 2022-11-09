@@ -215,8 +215,8 @@ public class MainPageController implements Initializable{
 					return;
 				}
 
-				st.executeUpdate("update tasks set name='" + ad + "',qeydiyyat='" + qeydiyyat + "',gun='" + gun
-						+ "',category='" + category + "',status='" + status 
+				st.executeUpdate("update tasks set exerciseName='" + ad + "',exerciseRegisty='" + qeydiyyat + "',exerciseDay='" + gun
+						+ "',exerciseCategory='" + category + "',exerciseStatus='" + status 
 						+ "' where id=" + selectedTaskId);
 
 				updateMode = false;
