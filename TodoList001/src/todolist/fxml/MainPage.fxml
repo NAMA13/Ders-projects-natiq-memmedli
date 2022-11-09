@@ -217,6 +217,7 @@
                               </VBox>
                            </children>
                         </HBox>
+                        <Label text="Filter edilməsi üçün Search düyməsinə basın." />
                      </children>
                      <padding>
                         <Insets left="50.0" right="15.0" />

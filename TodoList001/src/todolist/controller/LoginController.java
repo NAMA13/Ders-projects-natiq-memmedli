@@ -58,18 +58,7 @@ public class LoginController {
 
 	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
 	private boolean login(String username, String password) {
 		boolean b = false;
 		Connection conn = null;
