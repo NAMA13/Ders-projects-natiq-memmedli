@@ -424,7 +424,7 @@ public class MainPageController implements Initializable{
 		if(selected == null) {
 			loadTasks(" and exerciseName = '" + search + "';");
 		}else {
-			loadTasks(" and concat(exerciseName, exerciseStatus) like '%" + search + selected + "%';");
+			loadTasks(" and exerciseName like '%" + search + "%' and exerciseStatus like '%" + selected + "%';");
 		}
 
 		
