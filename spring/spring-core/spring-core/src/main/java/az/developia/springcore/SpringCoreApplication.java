@@ -10,8 +10,12 @@ public class SpringCoreApplication {
 	public static void main(String[] args) {
 		ConfigurableApplicationContext context =
 		SpringApplication.run(SpringCoreApplication.class, args);
-		Employee s = context.getBean(Employee.class);
-		System.out.println(s);
+		
+	    Car car1 = context.getBean(Car.class);
+	    System.out.println(car1);
+		
+	    Car car2 = context.getBean(Car.class);
+	    System.out.println(car2);
 		
 	}
 
