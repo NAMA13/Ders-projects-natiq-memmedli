@@ -3,25 +3,20 @@ package az.developia.springcore;
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 
-import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 @Component
-
-public class Computer {
-	@Override
-	public String toString() {
-		return "Computer [id=" + id + ", brand=" + brand + ", price=" + price + ", color=" + color + "]";
-	}
+@Scope("prototype")
+public class Home {
 	private int id;
-	private String brand;
-	private double price;
+	private String address;
 	private String color;
-	public Computer() {
-		id = 1;
-		brand = "Lenovo";
-		price = 4599.99;
-		color = "Dark";
+	public Home(int id, String address, String color) {
+		super();
+		this.id = id;
+		this.address = address;
+		this.color = color;
 	}
 	public int getId() {
 		return id;
@@ -29,25 +24,22 @@ public class Computer {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public String getBrand() {
-		return brand;
+	public String getAddress() {
+		return address;
 	}
-	public void setBrand(String brand) {
-		this.brand = brand;
-	}
-	public double getPrice() {
-		return price;
-	}
-	public void setPrice(double price) {
-		this.price = price;
+	public void setAddress(String address) {
+		this.address = address;
 	}
 	public String getColor() {
 		return color;
 	}
+	@Override
+	public String toString() {
+		return "Home [id=" + id + ", address=" + address + ", color=" + color + "]";
+	}
 	public void setColor(String color) {
 		this.color = color;
 	}
-	
 
 	@PostConstruct
 	private void init() {

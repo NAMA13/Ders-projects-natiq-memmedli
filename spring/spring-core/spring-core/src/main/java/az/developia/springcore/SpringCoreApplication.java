@@ -11,12 +11,15 @@ public class SpringCoreApplication {
 		ConfigurableApplicationContext context =
 		SpringApplication.run(SpringCoreApplication.class, args);
 		
-	    Car car1 = context.getBean(Car.class);
-	    System.out.println(car1);
+	    Computer comp1 = context.getBean(Computer.class);
+		System.out.println(comp1);
 		
-	    Car car2 = context.getBean(Car.class);
-	    System.out.println(car2);
 		
+		Home home1 = context.getBean(Home.class);
+		System.out.println(home1);
+
+	    Home home2 = context.getBean(Home.class);
+		System.out.println(home1);
 	}
 
 }
