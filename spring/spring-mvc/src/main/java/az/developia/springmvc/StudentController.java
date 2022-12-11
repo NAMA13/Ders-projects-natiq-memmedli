@@ -52,18 +52,11 @@ public class StudentController {
 		return "redirect:/computers";
 	}
 
-	@GetMapping(path = "/computers/open-edit-page{id}")
-	public String showEditPage(@PathVariable Integer id, Model model) {
+	@GetMapping(path = "/edit/{id}")
+	public String edit(@PathVariable Integer id, Model model) {
 		Computer c = service.findComputer(id);
-		
 		model.addAttribute("computer", c);
-		return "edit-computer";
-	}
-
-	@PostMapping(path = "/edit")
-	public String edit(@ModelAttribute(name = "computer") Computer s) {
-		service.edit(s, s.getId());
-		return "redirect:/computers";
+		return "save-student";
 	}
 
 }

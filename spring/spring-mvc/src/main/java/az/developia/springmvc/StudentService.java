@@ -49,10 +49,6 @@ public class StudentService {
 		repository.delete(id);
 	}
 
-	public void edit(Computer c, int id) {
-		repository.edit(c, id);
-	}
-
 	public Computer findComputer(int id) {
 		return repository.findComputers(id);
 	}

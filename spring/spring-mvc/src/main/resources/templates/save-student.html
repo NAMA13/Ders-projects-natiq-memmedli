@@ -16,9 +16,13 @@
 <body>
 
 	<div class="container">
-		<h2>Yeni computer qeydiyyati</h2>
+		<h2>New computer registry and Edit</h2>
+		
+		
 		<form th:object="${computer}" th:action="@{/computers/save}"
 			method="POST">
+			
+			<input th:field="*{id}" type="hidden">
 
 			<div class="form-group">
 				<label for="student-name">Model:</label> <input type="text"
@@ -41,7 +45,7 @@
 
 
 
-			<button type="submit" class="btn btn-primary">Yadda saxla</button>
+			<button type="submit" class="btn btn-primary">Save</button>
 
 		</form>
 	</div>

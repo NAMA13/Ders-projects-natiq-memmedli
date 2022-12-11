@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-<title>telebeler</title>
+<title>Computers</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet"
@@ -17,8 +17,8 @@
 
 	<div class="container">
 
-		<a href="/" class="btn btn-primary">Ana sehife</a><br> <a
-			href="/computers/open-save-page" class="btn btn-success">Yeni
+		<a href="/" class="btn btn-primary">Main page</a><br> <a
+			href="/computers/open-save-page" class="btn btn-success">New
 			computer</a><br>
 
 
@@ -47,11 +47,9 @@
 
 					<td><a class="btn btn-danger"
 						th:href="@{/computers/delete/{id}(id=${st.id})}"
-						onclick="return confirm('silmeye eminsen?')">Sil</a></td>
-
-					<td><a class="btn btn-warning"
-						th:href="@{/computers/open-edit-page/{id} (id=${st.id})}">Redakte
-							et</a></td>
+						onclick="return confirm('silmeye eminsen?')">Sil</a> | <a
+						class="btn btn-primary"
+						th:href="@{/computers/edit/{id}(id=${st.id})}">Redakte et</a></td>
 
 				</tr>
 
