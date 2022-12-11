@@ -17,7 +17,6 @@ public class HomeController {
 	
 	
 	@GetMapping(path = "/error")
-
 	public String showError(    Model m) {
  
 			m.addAttribute("message", "link yoxdu");

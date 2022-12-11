@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-<title>yeni telebe qeydiyyati</title>
+<title>Computer Redakdesi</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet"
@@ -16,26 +16,26 @@
 <body>
 
 	<div class="container">
-		<h2>Yeni computer qeydiyyati</h2>
-		<form th:object="${computer}" th:action="@{/computers/save}"
+		<h2>Computer Redakdesi</h2>
+		<form th:object="${computer}" th:action="@{/computers/edit}" th:each="st : ${computers}"
 			method="POST">
 
 			<div class="form-group">
 				<label for="student-name">Model:</label> <input type="text"
-					class="form-control" id="computer-name" th:field="*{model}">
+					class="form-control" id="computer-name" th:field="*{model}" th:value="${st.model}">
 
 			</div>
 
 
 			<div class="form-group">
 				<label for="student-surname">Brand:</label> <input type="text"
-					class="form-control" id="student-surname" th:field="*{brand}">
+					class="form-control" id="student-surname" th:field="*{brand}" th:value="${st.brand}">
 
 			</div>
 
 			<div class="form-group">
 				<label for="student-birthday">Price:</label> <input type="number"
-					class="form-control" id="student-birthday" th:field="*{price}">
+					class="form-control" id="student-birthday" th:field="*{price}" th:value="${st.price}"> 
 
 			</div>
 
