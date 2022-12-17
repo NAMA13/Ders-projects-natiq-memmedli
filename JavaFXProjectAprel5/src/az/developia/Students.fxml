@@ -1,18 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.image.*?>
-<?import javafx.geometry.*?>
-<?import java.lang.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="600.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="az.developia.StudentsController">
+<AnchorPane prefHeight="600.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="az.developia.StudentsController">
    <children>
       <VBox layoutX="5.0" layoutY="23.0" prefHeight="558.0" prefWidth="690.0">
          <children>
@@ -98,16 +99,17 @@
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </padding>
                <children>
-                  <Button mnemonicParsing="false" onAction="#onSave" prefHeight="36.0" prefWidth="152.0" text="Yadda Saxla!">
+                  <Button mnemonicParsing="false" onAction="#onSave" prefHeight="36.0" prefWidth="140.0" text="Yadda Saxla!">
                      <font>
                         <Font name="Arial Rounded MT Bold" size="18.0" />
                      </font>
                   </Button>
-                  <Button layoutX="15.0" layoutY="15.0" mnemonicParsing="false" onAction="#onAddNameToListView" prefHeight="36.0" prefWidth="192.0" text="Siyahiya elave et">
+                  <Button layoutX="15.0" layoutY="15.0" mnemonicParsing="false" onAction="#onAddNameToListView" prefHeight="36.0" prefWidth="174.0" text="Siyahiya elave et">
                      <font>
                         <Font name="Arial Rounded MT Bold" size="18.0" />
                      </font>
                   </Button>
+                  <Button mnemonicParsing="false" onAction="#qeyd" prefHeight="47.0" prefWidth="72.0" text="Qeyd" />
                   <Button layoutX="188.0" layoutY="15.0" mnemonicParsing="false" onAction="#deleteName" prefHeight="36.0" prefWidth="59.0" text="Sil">
                      <font>
                         <Font name="Arial Rounded MT Bold" size="18.0" />
@@ -119,6 +121,11 @@
                      </font>
                   </Button>
                   <Button layoutX="442.0" layoutY="15.0" mnemonicParsing="false" onAction="#editName" prefHeight="36.0" prefWidth="109.0" text="Redakte">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="18.0" />
+                     </font>
+                  </Button>
+                  <Button mnemonicParsing="false" onAction="#showCourses" prefHeight="36.0" prefWidth="107.0" text="Kurslar">
                      <font>
                         <Font name="Arial Rounded MT Bold" size="18.0" />
                      </font>

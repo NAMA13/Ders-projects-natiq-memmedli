@@ -14,8 +14,10 @@ import java.util.ResourceBundle;
 import org.controlsfx.control.Notifications;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
+import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
@@ -23,6 +25,9 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import javafx.util.Duration;
 
 public class StudentsController implements Initializable {
@@ -132,6 +137,38 @@ public class StudentsController implements Initializable {
 		studentNationality.getItems().add("Fransiz");
 		studentNationality.getSelectionModel().select(0);
 
+	}
+
+	private void showCourses() {
+		try {
+			
+			Stage s=new Stage();
+			s.initModality(Modality.APPLICATION_MODAL);
+			s.setTitle("Kurslar Ve Telebeler");
+			AnchorPane a=FXMLLoader.load(getClass().getResource("CoursesAndKids.fxml"));
+			Scene scene=new Scene(a);
+			s.setScene(scene);
+			s.show();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	private void qeyd() {
+		try {
+			
+			Stage s=new Stage();
+			s.initModality(Modality.APPLICATION_MODAL);
+			s.setTitle("Kurslar Ve Telebeler");
+			AnchorPane a=FXMLLoader.load(getClass().getResource("CoursesAndKids.fxml"));
+			Scene scene=new Scene(a);
+			s.setScene(scene);
+			s.show();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	@FXML

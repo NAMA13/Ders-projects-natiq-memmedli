@@ -39,7 +39,7 @@ public class QuestionsController implements Initializable {
 
 			while (rs.next()) {
 
-				String question = rs.getString("question");
+				String question = rs.getString("questions");
 				int questionId = rs.getInt("id");
 				Label questionLabel = new Label(question);
 				vBox.getChildren().add(questionLabel);
