@@ -9,8 +9,8 @@ import az.developia.springmvc.exceptions.StudentNotFoundException;
 @ControllerAdvice
 public class MyExceptionHandler {
 	@ExceptionHandler
-	public String handleNotFound(StudentNotFoundException exc, Model m) {
-		m.addAttribute("message", exc.getMessage());
+	public String handleNotFound(StudentNotFoundException exc,Model m) {
+		m.addAttribute("message",exc.getMessage());
 		return "my-message";
 	}
 }

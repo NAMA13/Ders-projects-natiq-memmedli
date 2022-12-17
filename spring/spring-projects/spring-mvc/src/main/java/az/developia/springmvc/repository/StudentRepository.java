@@ -11,7 +11,7 @@ import javax.sql.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import az.developia.springmvc.model.Student;
+import az.developia.springmvc.model.Computer;
 
 @Repository
 public class StudentRepository {
@@ -19,78 +19,89 @@ public class StudentRepository {
 	@Autowired
 	private DataSource dataSource;
 
-	public List<Student> findAll() {
-		List<Student> students = new ArrayList<>();
+	public List<Computer> findAll() {
+		List<Computer> computers = new ArrayList<>();
 		try {
 			Connection conn = dataSource.getConnection();
-			PreparedStatement ps = conn.prepareStatement("select * from students");
+			PreparedStatement ps = conn.prepareStatement("select * from computers");
 
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
-				Student s = new Student(rs.getInt("id"), rs.getString("name"), rs.getString("surname"),
-						rs.getDate("birthday"), rs.getString("sector"));
-				students.add(s);
+				Computer s = new Computer(rs.getInt("id"), rs.getString("model"), rs.getString("brand"),
+						rs.getInt("price"));
+				computers.add(s);
 			}
 
 			conn.close();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return students;
+		return computers;
 	}
 
-	public void save(Student student) {
-
-		if (student.getId() == null) {
-			insertStudent(student);
+	public void save(Computer computer) {
+		if (computer.getId() == null) {
+			insertComputer(computer);
 		} else {
-			updateStudent(student);
+			updateComputer(computer);
 		}
 
 	}
 
-	private void updateStudent(Student student) {
+	public void insertComputer(Computer computer) {
 		try {
 			Connection conn = dataSource.getConnection();
-			PreparedStatement ps = conn
-					.prepareStatement("update students  set name=?,surname=?,birthday=?,sector=? where id=?;");
-			ps.setString(1, student.getName());
-			ps.setString(2, student.getSurname());
-			ps.setDate(3, student.getBirthday());
-			ps.setString(4, student.getSector());
-			ps.setInt(5, student.getId());
+			PreparedStatement ps = conn.prepareStatement("insert into computers (model,brand,price) values (?,?,?);");
+			ps.setString(1, computer.getModel());
+			ps.setString(2, computer.getBrand());
+			ps.setInt(3, computer.getPrice());
 			ps.executeUpdate();
 
 			conn.close();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
 	}
 
-	private void insertStudent(Student student) {
+	public void updateComputer(Computer computer) {
 		try {
 			Connection conn = dataSource.getConnection();
-			PreparedStatement ps = conn
-					.prepareStatement("insert into students (name,surname,birthday,sector) values (?,?,?,?);");
-			ps.setString(1, student.getName());
-			ps.setString(2, student.getSurname());
-			ps.setDate(3, student.getBirthday());
-			ps.setString(4, student.getSector());
+			PreparedStatement ps = conn.prepareStatement(
+					"update computers set model=?,brand=?,price=? where id=" + computer.getId() + ";");
+			ps.setString(1, computer.getModel());
+			ps.setString(2, computer.getBrand());
+			ps.setInt(3, computer.getPrice());
 			ps.executeUpdate();
 
 			conn.close();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
 
+	public Computer findComputers(int id) {
+		Computer c = null;
+		try {
+			Connection conn = dataSource.getConnection();
+			PreparedStatement ps = conn.prepareStatement("select * from computers where id =?;");
+			ps.setInt(1, id);
+			ResultSet rs = ps.executeQuery();
+			if (rs.next()) {
+				c = new Computer(rs.getInt("id"), rs.getString("model"), rs.getString("brand"), rs.getInt("price"));
+			}
+
+			conn.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return c;
 	}
 
 	public void delete(Integer id) {
 
 		try {
 			Connection conn = dataSource.getConnection();
-			PreparedStatement ps = conn.prepareStatement("delete from students  where id=?;");
+			PreparedStatement ps = conn.prepareStatement("delete from computers  where id=?;");
 			ps.setInt(1, id);
 			ps.executeUpdate();
 			conn.close();
@@ -98,26 +109,6 @@ public class StudentRepository {
 			e.printStackTrace();
 		}
 
-	}
-
-	public Student findById(Integer id) {
-		Student s = null;
-		try {
-			Connection conn = dataSource.getConnection();
-			PreparedStatement ps = conn.prepareStatement("select * from students where id=?;");
-			ps.setInt(1, id);
-			ResultSet rs = ps.executeQuery();
-			if (rs.next()) {
-				s = new Student(rs.getInt("id"), rs.getString("name"), rs.getString("surname"), rs.getDate("birthday"),
-						rs.getString("sector"));
-
-			}
-
-			conn.close();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return s;
 	}
 
 }

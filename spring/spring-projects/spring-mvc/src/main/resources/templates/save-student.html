@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-<title th:text="${header}"> </title>
+<title>yeni telebe qeydiyyati</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet"
@@ -16,48 +16,36 @@
 <body>
 
 	<div class="container">
-	
-		<h2 th:text="${header}"></h2>
+		<h2>New computer registry and Edit</h2>
 		
-		<form th:object="${student}" th:action="@{/students/save}" method="POST">
-
-<input th:field="*{id}" type="hidden">
+		
+		<form th:object="${computer}" th:action="@{/computers/save}"
+			method="POST">
+			
+			<input th:field="*{id}" type="hidden">
 
 			<div class="form-group">
-				<label for="student-name">Ad:</label> <input type="text"
-					class="form-control" id="student-name" th:field="*{name}">
+				<label for="student-name">Model:</label> <input type="text"
+					class="form-control" id="computer-name" th:field="*{model}">
 
 			</div>
 
 
 			<div class="form-group">
-				<label for="student-surname">Soyad:</label> <input type="text"
-					class="form-control" id="student-surname" th:field="*{surname}">
+				<label for="student-surname">Brand:</label> <input type="text"
+					class="form-control" id="student-surname" th:field="*{brand}">
 
 			</div>
-			
+
 			<div class="form-group">
-				<label for="student-birthday">Təvəllüd:</label> <input type="date"
-					class="form-control" id="student-birthday" th:field="*{birthday}">
+				<label for="student-birthday">Price:</label> <input type="number"
+					class="form-control" id="student-birthday" th:field="*{price}">
 
 			</div>
-			
-			<div class="form-group">
-				<label for="student-sector">Sektor:</label> 
-				
-				<select  
-					class="form-control" id="student-sector" th:field="*{sector}">
-					<option th:value="'Az'" th:text="'Azərbaycan'"></option>
-					<option th:value="'Türk'" th:text="'Türk'"></option>
-					<option th:value="'Ingilis'" th:text="'Ingilis'"></option>
-					</select>
-
-			</div>
-			
-			
 
 
-			<button type="submit" class="btn btn-primary">Yadda saxla</button>
+
+			<button type="submit" class="btn btn-primary">Save</button>
 
 		</form>
 	</div>

@@ -3,11 +3,13 @@ package az.developia.springmvc.service;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import az.developia.springmvc.exceptions.StudentNotFoundException;
-import az.developia.springmvc.model.Student;
+import az.developia.springmvc.model.Computer;
 import az.developia.springmvc.repository.StudentRepository;
 
 @Service
@@ -16,34 +18,34 @@ public class StudentService {
 	@Autowired
 	private StudentRepository repository;
 
-	public List<Student> filter(String sorgu) {
-		List<Student> students = repository.findAll();
-		List<Student> filtered = new ArrayList<>();
+	public List<Computer> filter(String sorgu) {
+		List<Computer> computers = repository.findAll();
+		List<Computer> filtered = new ArrayList<>();
 		if (sorgu.trim().equals("")) {
 
 		} else {
-			for (Student st : students) {
-				if (st.getName().toLowerCase().contains(sorgu.toLowerCase())
-						|| st.getSurname().toLowerCase().contains(sorgu.toLowerCase())) {
+			for (Computer st : computers) {
+				if (st.getModel().toLowerCase().contains(sorgu.toLowerCase())
+						|| st.getBrand().toLowerCase().contains(sorgu.toLowerCase())) {
 					filtered.add(st);
 				}
 
 			}
 
 			if (filtered.size() == 0) {
-				throw new StudentNotFoundException("Axtarılan tələbə tapılmadı!!!");
+				throw new StudentNotFoundException("Axtarilan Computer yoxdu");
 			}
 
 		}
 		return filtered;
 	}
 
-	public List<Student> findAll() {
+	public List<Computer> findAll() {
 		return repository.findAll();
 
 	}
 
-	public void save(Student s) {
+	public void save(Computer s) {
 		repository.save(s);
 	}
 
@@ -51,7 +53,7 @@ public class StudentService {
 		repository.delete(id);
 	}
 
-	public Student findById(Integer id) {
-		return repository.findById(id);
+	public Computer findComputer(int id) {
+		return repository.findComputers(id);
 	}
 }
