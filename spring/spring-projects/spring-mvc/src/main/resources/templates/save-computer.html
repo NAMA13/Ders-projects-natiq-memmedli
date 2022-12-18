@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
   <head>
-    <title>Qeydiyyat</title>
+    <title th:text="${header}"> </title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link
@@ -14,48 +14,53 @@
   </head>
   <body>
     <div class="container">
-      <h2>New computer registry and Edit</h2>
+      <h2 th:text="${header}"></h2>
 
-      <form
-        th:object="${computer}"
-        th:action="@{/computers/save}"
-        method="POST"
-      >
+      <form th:object="${student}" th:action="@{/students/save}" method="POST">
         <input th:field="*{id}" type="hidden" />
 
         <div class="form-group">
-          <label for="student-name">Model:</label>
+          <label for="student-name">Ad:</label>
           <input
             type="text"
             class="form-control"
-            id="computer-name"
-            th:field="*{model}"
+            id="student-name"
+            th:field="*{name}"
           />
-		  <div class="text-danger" th:if="${#fields.hasErrors('model')}" th:errors="*{model}"></div>
         </div>
 
         <div class="form-group">
-          <label for="student-surname">Brand:</label>
+          <label for="student-surname">Soyad:</label>
           <input
             type="text"
             class="form-control"
             id="student-surname"
-            th:field="*{brand}"
+            th:field="*{surname}"
           />
-		  <div class="text-danger" th:if="${#fields.hasErrors('brand')}" th:errors="*{brand}"></div>
+		  <div class="text-danger" th:if="${#fields.hasErrors('surname')}" th:errors="*{surname}"></div>
         </div>
 
         <div class="form-group">
-          <label for="student-birthday">Price:</label>
+          <label for="student-birthday">Təvəllüd:</label>
           <input
-            type="number"
+            type="date"
             class="form-control"
             id="student-birthday"
-            th:field="*{price}"
+            th:field="*{birthday}"
           />
         </div>
 
-        <button type="submit" class="btn btn-primary">Save</button>
+        <div class="form-group">
+          <label for="student-sector">Sektor:</label>
+
+          <select class="form-control" id="student-sector" th:field="*{sector}">
+            <option th:value="'Az'" th:text="'Azərbaycan'"></option>
+            <option th:value="'Türk'" th:text="'Türk'"></option>
+            <option th:value="'Ingilis'" th:text="'Ingilis'"></option>
+          </select>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Yadda saxla</button>
       </form>
     </div>
   </body>

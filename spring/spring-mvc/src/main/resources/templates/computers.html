@@ -22,9 +22,9 @@
 			computer</a><br>
 
 
-		<form th:action="@{/students/search}">
-			<input name="sorgu" th:value="${sorgu}"> <input type="submit"
-				value="axtar">
+		<form th:action="@{/search}">
+			<input name="query" th:value="${query}" class="form-control">
+			<input type="submit" value="axtar">
 		</form>
 
 
@@ -35,6 +35,7 @@
 					<th>Model</th>
 					<th>Brand</th>
 					<th>Price</th>
+					<th>Operations</th>
 				</tr>
 			</thead>
 			<tbody>

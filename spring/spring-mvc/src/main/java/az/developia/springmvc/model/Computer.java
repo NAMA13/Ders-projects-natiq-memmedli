@@ -2,12 +2,27 @@ package az.developia.springmvc.model;
 
 import java.sql.Date;
 
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
+
 public class Computer {
 
 	private Integer id;
+	
+	@Size(min=3,message="Cannot be less than 3 characters!")
+	@NotEmpty()
 	private String model;
+	
+	@Size(min=3,message="Cannot be less than 5 characters!")
+	@NotEmpty()
 	private String brand;
+	
+	@Min(value=1000, message= "Min $1000")
+	@Max(value=20000, message= "Max $20000")
 	private int price;
+	
 	public Integer getId() {
 		return id;
 	}

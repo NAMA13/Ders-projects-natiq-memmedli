@@ -1,8 +1,11 @@
 package az.developia.springmvc.controller;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -27,9 +30,8 @@ public class ComputerController {
 		return "computers";
 	}
 
-	@GetMapping(path = "/computers")
-	public String showPageSearch(@RequestParam(name = "sorgu", required = false, defaultValue = "") String ss,
-			Model model) {
+	@GetMapping(path = "computer/search")
+	public String showPageSearch(@RequestParam(name = "query", required = false, defaultValue = "") String ss, Model model) {
 		model.addAttribute("computers", service.filter(ss));
 		model.addAttribute("sorgu", ss);
 		return "computers";
@@ -44,7 +46,10 @@ public class ComputerController {
 	}
 
 	@PostMapping(path = "/save")
-	public String save(@ModelAttribute(name = "computer") Computer s) {
+	public String save(@Valid @ModelAttribute(name = "student") Computer s,BindingResult br) {
+		if(br.hasErrors()) {
+			return "save-computers";
+		}
 		service.save(s);
 		return "redirect:/computers";
 	}
