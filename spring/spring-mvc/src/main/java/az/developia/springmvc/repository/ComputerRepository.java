@@ -1,6 +1,7 @@
-package az.developia.springmvc;
+package az.developia.springmvc.repository;
 
 import java.sql.Connection;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
@@ -11,8 +12,11 @@ import javax.sql.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import az.developia.springmvc.model.Computer;
+
 @Repository
-public class StudentRepository {
+
+public class ComputerRepository {
 
 	@Autowired
 	private DataSource dataSource;

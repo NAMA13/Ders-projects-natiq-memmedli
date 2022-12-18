@@ -1,4 +1,4 @@
-package az.developia.springmvc;
+package az.developia.springmvc.controller;
 
 import java.util.ArrayList;
 

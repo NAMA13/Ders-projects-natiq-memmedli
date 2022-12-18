@@ -1,4 +1,4 @@
-package az.developia.springmvc;
+package az.developia.springmvc.model;
 
 import java.sql.Date;
 

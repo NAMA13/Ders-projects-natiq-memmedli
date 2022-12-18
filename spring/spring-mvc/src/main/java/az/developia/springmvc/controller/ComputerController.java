@@ -1,4 +1,4 @@
-package az.developia.springmvc;
+package az.developia.springmvc.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,12 +10,15 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import az.developia.springmvc.model.Computer;
+import az.developia.springmvc.service.ComputerService;
+
 @Controller
 @RequestMapping(path = "/computers")
-public class StudentController {
+public class ComputerController {
 
 	@Autowired
-	private StudentService service;
+	private ComputerService service;
 
 	@GetMapping
 	public String showPage(Model model) {
@@ -37,7 +40,7 @@ public class StudentController {
 		Computer s = new Computer(null, null, null, 0);
 
 		model.addAttribute("computer", s);
-		return "save-student";
+		return "save-computer";
 	}
 
 	@PostMapping(path = "/save")
@@ -56,7 +59,7 @@ public class StudentController {
 	public String edit(@PathVariable Integer id, Model model) {
 		Computer c = service.findComputer(id);
 		model.addAttribute("computer", c);
-		return "save-student";
+		return "save-computer";
 	}
 
 }

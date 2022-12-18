@@ -1,4 +1,4 @@
-package az.developia.springmvc;
+package az.developia.springmvc.service;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,11 +8,15 @@ import javax.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import az.developia.springmvc.exceptions.ComputerNotFoundException;
+import az.developia.springmvc.model.Computer;
+import az.developia.springmvc.repository.ComputerRepository;
+
 @Service
-public class StudentService {
+public class ComputerService {
 
 	@Autowired
-	private StudentRepository repository;
+	private ComputerRepository repository;
 
 	public List<Computer> filter(String sorgu) {
 		List<Computer> computers = repository.findAll();
@@ -29,7 +33,7 @@ public class StudentService {
 			}
 
 			if (filtered.size() == 0) {
-				throw new StudentNotFoundException("Axtarilan Computer yoxdu");
+				throw new ComputerNotFoundException("Axtarilan Computer yoxdu");
 			}
 
 		}
