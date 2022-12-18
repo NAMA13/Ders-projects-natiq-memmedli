@@ -10,11 +10,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import az.developia.springmvc.model.Computer;
+import az.developia.springmvc.model.Student;
 import az.developia.springmvc.service.StudentService;
 
 @Controller
-@RequestMapping(path = "/computers")
+@RequestMapping(path = "/students")
 public class StudentController {
 
 	@Autowired
@@ -22,43 +22,48 @@ public class StudentController {
 
 	@GetMapping
 	public String showPage(Model model) {
-		model.addAttribute("computers", service.findAll());
+		model.addAttribute("students", service.findAll());
 
-		return "computers";
+		return "students";
 	}
 
-	@GetMapping(path = "/computers")
-	public String showPageSearch(@RequestParam(name = "sorgu", required = false, defaultValue = "") String ss,
+	@GetMapping(path = "/search")
+
+	public String showPageSearch(@RequestParam(name = "query", required = false, defaultValue = "") String query,
 			Model model) {
-		model.addAttribute("computers", service.filter(ss));
-		model.addAttribute("sorgu", ss);
-		return "computers";
+		model.addAttribute("students", service.filter(query));
+		model.addAttribute("query", query);
+		return "students";
 	}
 
 	@GetMapping(path = "/open-save-page")
 	public String showSavePage(Model model) {
-		Computer s = new Computer(null, null, null, 0);
+		Student s = new Student();
 
-		model.addAttribute("computer", s);
+		model.addAttribute("student", s);
+		model.addAttribute("header", "Yeni tələbə qeydiyyatı");
+		
 		return "save-student";
 	}
 
 	@PostMapping(path = "/save")
-	public String save(@ModelAttribute(name = "computer") Computer s) {
+	public String save(@ModelAttribute(name = "student") Student s) {
 		service.save(s);
-		return "redirect:/computers";
+		return "redirect:/students";
 	}
 
 	@GetMapping(path = "/delete/{id}")
 	public String delete(@PathVariable Integer id) {
 		service.delete(id);
-		return "redirect:/computers";
+		return "redirect:/students";
 	}
 
 	@GetMapping(path = "/edit/{id}")
 	public String edit(@PathVariable Integer id, Model model) {
-		Computer c = service.findComputer(id);
-		model.addAttribute("computer", c);
+		 
+		Student s = service.findById(id);
+		model.addAttribute("student", s);
+		model.addAttribute("header", "Tələbə redaktəsi");
 		return "save-student";
 	}
 
