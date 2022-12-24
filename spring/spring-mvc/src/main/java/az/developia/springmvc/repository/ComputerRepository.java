@@ -30,7 +30,7 @@ public class ComputerRepository {
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
 				Computer s = new Computer(rs.getInt("id"), rs.getString("model"), rs.getString("brand"),
-						rs.getInt("price"));
+						rs.getInt("price"), rs.getDate("computerDate"));
 				computers.add(s);
 			}
 
@@ -53,10 +53,12 @@ public class ComputerRepository {
 	public void insertComputer(Computer computer) {
 		try {
 			Connection conn = dataSource.getConnection();
-			PreparedStatement ps = conn.prepareStatement("insert into computers (model,brand,price) values (?,?,?);");
+			PreparedStatement ps = conn
+					.prepareStatement("insert into computers (model,brand,price,computerDate) values (?,?,?,?);");
 			ps.setString(1, computer.getModel());
 			ps.setString(2, computer.getBrand());
 			ps.setInt(3, computer.getPrice());
+			ps.setDate(4, computer.getDate());
 			ps.executeUpdate();
 
 			conn.close();
@@ -69,10 +71,11 @@ public class ComputerRepository {
 		try {
 			Connection conn = dataSource.getConnection();
 			PreparedStatement ps = conn.prepareStatement(
-					"update computers set model=?,brand=?,price=? where id=" + computer.getId() + ";");
+					"update computers set model=?,brand=?,price=?,computerDate=? where id=" + computer.getId() + ";");
 			ps.setString(1, computer.getModel());
 			ps.setString(2, computer.getBrand());
 			ps.setInt(3, computer.getPrice());
+			ps.setDate(4, computer.getDate());
 			ps.executeUpdate();
 
 			conn.close();
@@ -89,7 +92,8 @@ public class ComputerRepository {
 			ps.setInt(1, id);
 			ResultSet rs = ps.executeQuery();
 			if (rs.next()) {
-				c = new Computer(rs.getInt("id"), rs.getString("model"), rs.getString("brand"), rs.getInt("price"));
+				c = new Computer(rs.getInt("id"), rs.getString("model"), rs.getString("brand"), rs.getInt("price"),
+						rs.getDate("computerDate"));
 			}
 
 			conn.close();

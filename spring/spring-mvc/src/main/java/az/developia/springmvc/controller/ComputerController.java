@@ -39,16 +39,16 @@ public class ComputerController {
 
 	@GetMapping(path = "/open-save-page")
 	public String showSavePage(Model model) {
-		Computer s = new Computer(null, null, null, 0);
+		Computer s = new Computer(0, null, null, 0, null);
 
 		model.addAttribute("computer", s);
 		return "save-computer";
 	}
 
 	@PostMapping(path = "/save")
-	public String save(@Valid @ModelAttribute(name = "student") Computer s,BindingResult br) {
+	public String save(@Valid @ModelAttribute(name = "computer") Computer s, BindingResult br) {
 		if(br.hasErrors()) {
-			return "save-computers";
+			return "save-computer";
 		}
 		service.save(s);
 		return "redirect:/computers";

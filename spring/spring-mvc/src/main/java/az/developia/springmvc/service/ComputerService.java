@@ -49,7 +49,7 @@ public class ComputerService {
 		repository.save(s);
 	}
 
-	public void delete(Integer id) {
+	public void delete(int id) {
 		repository.delete(id);
 	}
 

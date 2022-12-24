@@ -36,6 +36,7 @@
 					<th>Brand</th>
 					<th>Price</th>
 					<th>Operations</th>
+					<th>Date</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -52,6 +53,7 @@
 						class="btn btn-primary"
 						th:href="@{/computers/edit/{id}(id=${st.id})}">Redakte et</a></td>
 
+					<td th:text="${st.date}"></td>
 				</tr>
 
 			</tbody>
