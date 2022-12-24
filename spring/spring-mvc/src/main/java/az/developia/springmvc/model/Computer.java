@@ -24,7 +24,7 @@ public class Computer {
 	
 	@Min(value=1000, message= "Min $1000")
 	@Max(value=20000, message= "Max $20000")
-	private int price;
+	private Integer price;
 	
 	@Past(message = "Date canot be FUTURE time!")
 	private Date date;
@@ -39,7 +39,7 @@ public class Computer {
 	public Integer getId() {
 		return id;
 	}
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 	public String getModel() {
@@ -53,7 +53,9 @@ public class Computer {
 		this.price = price;
 		this.date = date;
 	}
-
+public Computer() {
+	 
+}
 	@Override
 	public String toString() {
 		return "Computer [id=" + id + ", model=" + model + ", brand=" + brand + ", price=" + price + ", Date=" + date
@@ -69,10 +71,10 @@ public class Computer {
 	public void setBrand(String brand) {
 		this.brand = brand;
 	}
-	public int getPrice() {
+	public Integer getPrice() {
 		return price;
 	}
-	public void setPrice(int price) {
+	public void setPrice(Integer price) {
 		this.price = price;
 	}
 	

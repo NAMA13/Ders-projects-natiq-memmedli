@@ -39,7 +39,7 @@ public class ComputerController {
 
 	@GetMapping(path = "/open-save-page")
 	public String showSavePage(Model model) {
-		Computer s = new Computer(0, null, null, 0, null);
+		Computer s = new Computer( );
 
 		model.addAttribute("computer", s);
 		return "save-computer";
