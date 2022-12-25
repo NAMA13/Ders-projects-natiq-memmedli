@@ -27,8 +27,12 @@ public class StudentRepository {
 
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
-				Student s = new Student(rs.getInt("id"), rs.getString("name"), rs.getString("surname"),
-						rs.getDate("birthday"), rs.getString("sector"));
+		 
+				Student s =Student.builder().id(rs.getInt("id"))
+						.name(rs.getString("name")).surname(rs.getString("surname"))
+						.birthday(rs.getDate("birthday")).sector(rs.getString("sector"))
+						.point(rs.getInt("point")).phone(rs.getString("phone")).build();
+				 
 				students.add(s);
 			}
 
@@ -53,12 +57,14 @@ public class StudentRepository {
 		try {
 			Connection conn = dataSource.getConnection();
 			PreparedStatement ps = conn
-					.prepareStatement("update students  set name=?,surname=?,birthday=?,sector=? where id=?;");
+					.prepareStatement("update students  set name=?,surname=?,birthday=?,sector=?,point=?,phone=? where id=?;");
 			ps.setString(1, student.getName());
 			ps.setString(2, student.getSurname());
 			ps.setDate(3, student.getBirthday());
 			ps.setString(4, student.getSector());
-			ps.setInt(5, student.getId());
+			ps.setInt(5, student.getPoint());
+			ps.setString(6, student.getPhone());
+			ps.setInt(7, student.getId());
 			ps.executeUpdate();
 
 			conn.close();
@@ -72,11 +78,13 @@ public class StudentRepository {
 		try {
 			Connection conn = dataSource.getConnection();
 			PreparedStatement ps = conn
-					.prepareStatement("insert into students (name,surname,birthday,sector) values (?,?,?,?);");
+					.prepareStatement("insert into students (name,surname,birthday,sector,point,phone) values (?,?,?,?,?,?);");
 			ps.setString(1, student.getName());
 			ps.setString(2, student.getSurname());
 			ps.setDate(3, student.getBirthday());
 			ps.setString(4, student.getSector());
+			ps.setInt(5, student.getPoint());
+			ps.setString(6, student.getPhone());
 			ps.executeUpdate();
 
 			conn.close();
@@ -108,9 +116,10 @@ public class StudentRepository {
 			ps.setInt(1, id);
 			ResultSet rs = ps.executeQuery();
 			if (rs.next()) {
+				
 				s = new Student(rs.getInt("id"), rs.getString("name"), rs.getString("surname"), rs.getDate("birthday"),
-						rs.getString("sector"));
-
+						rs.getString("sector"),rs.getInt("point"),rs.getString("phone"));
+				 
 			}
 
 			conn.close();

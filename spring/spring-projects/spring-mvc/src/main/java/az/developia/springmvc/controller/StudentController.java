@@ -1,8 +1,11 @@
 package az.developia.springmvc.controller;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -10,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import az.developia.springmvc.model.Student;
 import az.developia.springmvc.service.StudentService;
 
 @Controller
@@ -46,7 +50,15 @@ public class StudentController {
 	}
 
 	@PostMapping(path = "/save")
-	public String save(@ModelAttribute(name = "student") Student s) {
+	public String save(@Valid @ModelAttribute(name = "student") Student s,BindingResult br) {
+		
+		// bu metod yalnis o zaman true qaytarirki,
+		// model sinifde hec olmasa 1 eded error olsun.
+		
+		if(br.hasErrors()) {
+			return "save-student";
+		}
+		
 		service.save(s);
 		return "redirect:/students";
 	}

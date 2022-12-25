@@ -10,9 +10,14 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Past;
 import javax.validation.constraints.Size;
 
+import lombok.*;
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class Computer {
 
-	private Integer id;
+	private Integer Id;
 	
 	@Size(min=3,message="Cannot be less than 3 characters!")
 	@NotEmpty(message="Cannot be empty")
@@ -28,54 +33,12 @@ public class Computer {
 	
 	@Past(message = "Date canot be FUTURE time!")
 	private Date date;
-	
-	
-	public java.sql.@Future(message="Date canot be FUTURE time!") Date getDate() {
-		return date;
-	}
-	public void setDate(java.sql.@Future(message="Date canot be FUTURE time!") Date date) {
-		this.date = date;
-	}
-	public Integer getId() {
-		return id;
-	}
-	public void setId(Integer id) {
-		this.id = id;
-	}
-	public String getModel() {
-		return model;
-	}
 	public Computer(int id, String model, String brand, int price, Date date) {
 		super();
-		this.id = id;
+		this.Id = id;
 		this.model = model;
 		this.brand = brand;
 		this.price = price;
 		this.date = date;
 	}
-public Computer() {
-	 
-}
-	@Override
-	public String toString() {
-		return "Computer [id=" + id + ", model=" + model + ", brand=" + brand + ", price=" + price + ", Date=" + date
-				+ "]";
-	}
-	
-	public void setModel(String model) {
-		this.model = model;
-	}
-	public String getBrand() {
-		return brand;
-	}
-	public void setBrand(String brand) {
-		this.brand = brand;
-	}
-	public Integer getPrice() {
-		return price;
-	}
-	public void setPrice(Integer price) {
-		this.price = price;
-	}
-	
 }

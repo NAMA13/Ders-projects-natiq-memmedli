@@ -42,7 +42,7 @@ public class ComputerRepository {
 	}
 
 	public void save(Computer computer) {
-		if (computer.getId() == null) {
+		if (computer.getClass() == null) {
 			insertComputer(computer);
 		} else {
 			updateComputer(computer);
