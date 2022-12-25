@@ -54,7 +54,7 @@ public class StudentController {
 		
 		// bu metod yalnis o zaman true qaytarirki,
 		// model sinifde hec olmasa 1 eded error olsun.
-		
+		 
 		if(br.hasErrors()) {
 			return "save-student";
 		}
