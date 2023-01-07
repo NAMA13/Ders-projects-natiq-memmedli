@@ -27,13 +27,12 @@ public class StudentRepository {
 
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
-  
+   
 		 
 				Student s =Student.builder().id(rs.getInt("id"))
 						.name(rs.getString("name")).surname(rs.getString("surname"))
 						.birthday(rs.getDate("birthday")).sector(rs.getString("sector"))
-						.point(rs.getInt("point")).phone(rs.getString("phone")).build();
-				 
+						.point(rs.getInt("point")).phone(rs.getString("phone")).email(rs.getString("email")).build();
  
 				students.add(s);
 			}
@@ -132,13 +131,10 @@ public class StudentRepository {
 			ResultSet rs = ps.executeQuery();
 			if (rs.next()) {
 				
-				s = new Student(rs.getInt("id"), rs.getString("name"), rs.getString("surname"), rs.getDate("birthday"),
- 
-						rs.getString("sector"));
-				
-				s.setPoint(rs.getInt("point"));
-				s.setEmail(rs.getString("email"));
-				s.setPhone(rs.getString("phone"));
+				  s =Student.builder().id(rs.getInt("id"))
+						.name(rs.getString("name")).surname(rs.getString("surname"))
+						.birthday(rs.getDate("birthday")).sector(rs.getString("sector"))
+						.point(rs.getInt("point")).phone(rs.getString("phone")).email(rs.getString("email")).build();
 
  
 						 
