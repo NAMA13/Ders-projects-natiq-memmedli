@@ -15,6 +15,7 @@ import lombok.*;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder 
 public class Computer {
 
 	private Integer Id;
@@ -33,6 +34,7 @@ public class Computer {
 	
 	@Past(message = "Date canot be FUTURE time!")
 	private Date date;
+	
 	public Computer(int id, String model, String brand, int price, Date date) {
 		super();
 		this.Id = id;
