@@ -27,7 +27,7 @@ insert into users (username,password,enabled) values
 ('Eli','{noop}123',0),
 ('Mehemmed','{noop}123',0),
 ('Nihad','{noop}123',0),
-('Huseyn','{noop}123',0),
+('Huseyn','{noop}123',0);
 
 
 insert into authorities (username,authority) values
