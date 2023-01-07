@@ -11,3 +11,29 @@ values
 ('Omen :)','Lenova',4899,'2022-07-06'),
 ('Pavilon','HP',3899,'2018-07-06'),
 ('Pavilon','HP',3899,'2012-07-06');
+
+create table users
+(username varchar(50),
+password varchar(100),
+enabled int);
+
+create table authorities
+(username varchar(50),
+authority varchar(50));
+
+insert into users (username,password,enabled) values
+('Natiq','{noop}321',1),
+('Uzeyir','{noop}123',1),
+('Eli','{noop}123',0),
+('Mehemmed','{noop}123',0),
+('Nihad','{noop}123',0),
+('Huseyn','{noop}123',0),
+
+
+insert into authorities (username,authority) values
+('Natiq','admin'),
+('Uzeyir','admin'),
+('Eli','admin'),
+('Mehemmed','admin'),
+('Nihad','admin'),
+('Huseyn','admin');
