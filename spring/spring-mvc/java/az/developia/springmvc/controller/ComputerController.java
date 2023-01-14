@@ -1,8 +1,10 @@
 package az.developia.springmvc.controller;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -24,20 +26,35 @@ public class ComputerController {
 	private ComputerService service;
 
 	@GetMapping
+	@PreAuthorize(value = "hasAuthority('computer:get:all')")
 	public String showPage(Model model) {
 		model.addAttribute("computers", service.findAll());
 
 		return "computers";
 	}
+	
+	@GetMapping(path="/login")
+	public String showMyLogin() {
+		return "customLogin";
+	}
+
+	@GetMapping(path="/logout")
+	public String logout(HttpSession session) {
+		session.invalidate();
+		return "redirect:/login";
+	}
 
 	@GetMapping(path = "computer/search")
+	@PreAuthorize(value = "hasAuthority('computer:search')")
 	public String showPageSearch(@RequestParam(name = "query", required = false, defaultValue = "") String ss, Model model) {
 		model.addAttribute("computers", service.filter(ss));
 		model.addAttribute("sorgu", ss);
+
 		return "computers";
 	}
 
 	@GetMapping(path = "/open-save-page")
+	@PreAuthorize(value = "hasAuthority('computer:add')")
 	public String showSavePage(Model model) {
 		Computer s = new Computer( );
 
@@ -46,6 +63,7 @@ public class ComputerController {
 	}
 
 	@PostMapping(path = "/save")
+	@PreAuthorize(value = "hasAuthority('student:save')")
 	public String save(@Valid @ModelAttribute(name = "computer") Computer s, BindingResult br) {
 		if(br.hasErrors()) {
 			return "save-computer";
@@ -55,12 +73,14 @@ public class ComputerController {
 	}
 
 	@GetMapping(path = "/delete/{id}")
+	@PreAuthorize(value = "hasAuthority('computer:delete')")
 	public String delete(@PathVariable Integer id) {
 		service.delete(id);
 		return "redirect:/computers";
 	}
 
 	@GetMapping(path = "/edit/{id}")
+	@PreAuthorize(value = "hasAuthority('computer:edit')")
 	public String edit(@PathVariable Integer id, Model model) {
 		Computer c = service.findComputer(id);
 		model.addAttribute("computer", c);

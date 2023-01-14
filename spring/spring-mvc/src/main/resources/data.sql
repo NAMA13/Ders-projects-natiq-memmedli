@@ -31,7 +31,12 @@ insert into users (username,password,enabled) values
 
 
 insert into authorities (username,authority) values
-('Natiq','admin'),
+('Natiq','computer:get:all'),
+('Natiq','computer:delete'),
+('Natiq','computer:edit'),
+('Natiq','computer:search'),
+('Natiq','computer:add'),
+('Natiq','computer:save'),
 ('Uzeyir','admin'),
 ('Eli','admin'),
 ('Mehemmed','admin'),
