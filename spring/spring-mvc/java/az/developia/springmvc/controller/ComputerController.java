@@ -32,17 +32,6 @@ public class ComputerController {
 
 		return "computers";
 	}
-	
-	@GetMapping(path="/login")
-	public String showMyLogin() {
-		return "customLogin";
-	}
-
-	@GetMapping(path="/logout")
-	public String logout(HttpSession session) {
-		session.invalidate();
-		return "redirect:/login";
-	}
 
 	@GetMapping(path = "computer/search")
 	@PreAuthorize(value = "hasAuthority('computer:search')")
