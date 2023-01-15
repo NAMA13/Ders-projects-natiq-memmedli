@@ -13,13 +13,16 @@ values
 ('Pavilon','HP',3899,'2012-07-06');
 
 create table users
-(username varchar(50),
+(name varchar(50),
+surname varchar(50),
+username varchar(50),
 password varchar(100),
 enabled int);
 
 create table authorities
 (username varchar(50),
-authority varchar(50));
+authority varchar(50)
+);
 
 insert into users (username,password,enabled) values
 ('Natiq','{noop}321',1),
