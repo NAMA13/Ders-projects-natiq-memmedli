@@ -43,6 +43,7 @@ main {
   align-items: center;
   backface-visibility: visible;
   border: 2px solid #000000;
+  z-index: 15;
 }
 .cont:hover {
   box-shadow: inset 0px 0px 50px #ffffff;

@@ -38,6 +38,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		.antMatchers(HttpMethod.GET, "/users/create-account").permitAll()
 		.antMatchers(HttpMethod.GET, "/h2-console/**").permitAll()
 		.antMatchers(HttpMethod.POST, "/users/save").permitAll()
+		.antMatchers(HttpMethod.GET, "/css/**").permitAll()
+		.antMatchers(HttpMethod.GET, "/js/**").permitAll()
+		.antMatchers(HttpMethod.GET, "/imgs/**").permitAll()
 		.anyRequest().authenticated()
 		.and().formLogin().loginPage("/my-login")
 		.loginProcessingUrl("/authenticate-user").permitAll() ;
