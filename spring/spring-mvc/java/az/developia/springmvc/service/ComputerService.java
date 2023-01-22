@@ -55,7 +55,6 @@ public class ComputerService {
 	}
 
 	public Computer findById(Integer id) {
-		return repository.findById(id).get();
 		Optional<Computer> finded = repository.findById(id);
 		Computer findedObject = null;
 		if (finded.isPresent()) {

@@ -18,21 +18,16 @@ import az.developia.springmvc.model.Computer;
 
 
 @Repository
-public class ComputerRepository {
+public interface ComputerRepository extends JpaRepository<Computer, Integer> {
 	
-	public interface ComputerRepositoryD extends JpaRepository<Computer, Integer> {
-		
-		// select * from students where name='BWM';
-		List<Computer> findAllByName(String brand);// query method
-		List<Computer> findAllBySurname(String model);
-		
-		// native query
-		@Query(value = "select * from computers where brand like %?1%;",nativeQuery = true)
-		List<Computer> neIstesekQoyaBilerik(String brand);
-		
-		
-
-	}
-
+	// select * from computers where name='Lenovo';
+	List<Computer> findAllByBrand(String brand);// query method
+	List<Computer> findAllByModel(String model);
+	
+	// native query
+	@Query(value = "select * from computers where brand like %?1%;",nativeQuery = true)
+	List<Computer> neIstesekQoyaBilerik(String brand);
+	
+	
 
 }

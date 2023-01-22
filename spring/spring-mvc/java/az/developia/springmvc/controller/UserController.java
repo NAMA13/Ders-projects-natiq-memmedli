@@ -1,5 +1,8 @@
 package az.developia.springmvc.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,30 +25,34 @@ import az.developia.springmvc.service.UserService;
 @Controller
 @RequestMapping(path = "/users")
 public class UserController {
-	
-	
+
 	@Autowired
 	private UserService service;
-	
-	
+
 	@GetMapping(path = "/create-account")
-	//@PreAuthorize(value = "hasAuthority('student:add')")
+	// @PreAuthorize(value = "hasAuthority('student:add')")
 	public String showSavePage(Model model) {
 		UserModel user = new UserModel();
-
 		model.addAttribute("user", user);
-		 
 		return "create-account";
 	}
 
 	@PostMapping(path = "/save")
-	//@PreAuthorize(value = "hasAuthority('student:save')")	
-	public String save(@Valid @ModelAttribute(name = "user") UserModel user,BindingResult br) {		 
-		if(br.hasErrors()) {
+	// @PreAuthorize(value = "hasAuthority('student:save')")
+	public String save(@Valid @ModelAttribute(name = "user") UserModel user, BindingResult br) {
+		if (br.hasErrors()) {
 			return "create-account";
-		} 
+		}
 		service.save(user);
 		return "redirect:/my-login";
+	}
+
+	@GetMapping(path = "/all") // /users/all
+	@PreAuthorize(value = "hasAuthority('user:get:all')")
+	public String showAll(Model model) {
+		List<UserModel> users = service.findAll();
+		model.addAttribute("users", users);
+		return "users";
 	}
 
 }

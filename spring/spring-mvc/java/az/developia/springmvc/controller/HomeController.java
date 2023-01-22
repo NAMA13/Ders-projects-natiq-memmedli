@@ -35,10 +35,10 @@ public class HomeController {
 			return "my-message";
 		 
 	}
-	@GetMapping(path="/create-account")
-	public String createAccount( ) {
-		 
-		return "create-account";
-	}
+//	@GetMapping(path="/create-account")
+//	public String createAccount( ) {
+//		 
+//		return "create-account";
+//	}
 	
 }
