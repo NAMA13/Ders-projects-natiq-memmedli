@@ -45,7 +45,7 @@ public class ComputerController {
 	@GetMapping(path = "/open-save-page")
 	@PreAuthorize(value = "hasAuthority('computer:add')")
 	public String showSavePage(Model model) {
-		Computer s = new Computer( );
+		Computer s = new Computer();
 
 		model.addAttribute("computer", s);
 		return "save-computer";
@@ -71,7 +71,7 @@ public class ComputerController {
 	@GetMapping(path = "/edit/{id}")
 	@PreAuthorize(value = "hasAuthority('computer:edit')")
 	public String edit(@PathVariable Integer id, Model model) {
-		Computer c = service.findComputer(id);
+		Computer c = service.findById(id);
 		model.addAttribute("computer", c);
 		return "save-computer";
 	}

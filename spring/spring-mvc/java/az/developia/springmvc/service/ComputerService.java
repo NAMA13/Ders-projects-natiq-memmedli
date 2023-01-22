@@ -2,6 +2,7 @@ package az.developia.springmvc.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import javax.annotation.PostConstruct;
 
@@ -50,10 +51,17 @@ public class ComputerService {
 	}
 
 	public void delete(int id) {
-		repository.delete(id);
+		repository.deleteById(id);
 	}
 
-	public Computer findComputer(int id) {
-		return repository.findComputers(id);
+	public Computer findById(Integer id) {
+		return repository.findById(id).get();
+		Optional<Computer> finded = repository.findById(id);
+		Computer findedObject = null;
+		if (finded.isPresent()) {
+			findedObject = finded.get();
+		}
+
+		return findedObject;
 	}
 }

@@ -9,6 +9,7 @@ import java.util.List;
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Repository;
 
 import az.developia.springmvc.model.Computer;
@@ -19,6 +20,9 @@ public class UserRepository {
 
 	@Autowired
 	private DataSource dataSource;
+	
+
+	private BCryptPasswordEncoder encoder=new BCryptPasswordEncoder();
 
 	public void save(UserModel user) {
 
@@ -31,7 +35,7 @@ public class UserRepository {
 			ps.setString(1, user.getName());
 			ps.setString(2, user.getSurname());
 			ps.setString(3, user.getUsername());
-			ps.setString(4, "{noop}" + user.getPassword());
+			ps.setString(4, "{bcrypt}" + encoder.encode(user.getPassword()));
 			ps.setInt(5, 1);
 
 			ps.executeUpdate();
