@@ -13,7 +13,7 @@ main{
 }
 body {
   /* background-color: #162656; */
-  background: url(../imgs/vadim-artyukhin-bBqMGSGaOXw-unsplash.jpg);
+  background: url("../imgs/vadim-artyukhin-bBqMGSGaOXw-unsplash.jpg");
   background-position: center;
   background-size: cover;
 }
