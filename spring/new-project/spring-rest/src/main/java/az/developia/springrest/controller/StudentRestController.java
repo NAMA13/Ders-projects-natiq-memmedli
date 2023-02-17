@@ -5,18 +5,18 @@ import java.util.List;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import az.developia.springrest.Model.Student;
+import az.developia.springrest.Model.EBookModel;
 
 @RestController
 public class StudentRestController {
 	
 	@GetMapping()
-	public Student giveMeStudent () {
-		return new Student(1, "Natiq", 14);
+	public EBookModel giveMeStudent () {
+		return new EBookModel(0, "3-cu addim", 80);
 	}
 	
 	@GetMapping(path = "/list")
-	public List<Student> giveMeStudents () {
-		return List.of(new Student(1, "Natiq", 14), new Student(1, "Natiq", 14));
+	public List<EBookModel> giveMeStudents () {
+		return List.of(new EBookModel(1, "2-cu addim", 80), new EBookModel(2, "1-cu addim", 80));
 	}
 }
