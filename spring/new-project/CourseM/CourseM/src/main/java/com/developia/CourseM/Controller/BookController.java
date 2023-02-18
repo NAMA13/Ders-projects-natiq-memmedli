@@ -15,10 +15,16 @@ public class BookController {
 	@Autowired 
 	private BookRepository repository;
 	
-	@GetMapping(path="/books")
+	@GetMapping(path="/books/findAll")
 	public String showHomePage(Model model) {
 		List<Book> books = repository.findAll();
 		model.addAttribute("books", books);
 		return "books";
+	}
+	
+	@GetMapping(path="/books/new")
+	public String openNewBookPage(Model model) {
+
+		return "new-book";
 	}
 }
