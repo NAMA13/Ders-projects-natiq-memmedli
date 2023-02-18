@@ -12,7 +12,7 @@ import com.developia.CourseM.Model.Book;
 import com.developia.CourseM.Repository.BookRepository;
 
 @RestController
-@RequestMapping(path="/books")
+@RequestMapping(path="/rest/books")
 public class BookRestConroller {
 	
 	@Autowired 
