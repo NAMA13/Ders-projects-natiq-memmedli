@@ -1,10 +1,26 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymleaf.org">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <link rel="stylesheet" th:href="@{/css/reset.css}" />
+    <link rel="stylesheet" th:href="@{/css/main.css}" />
+    <link rel="stylesheet" th:href="@{/css/new-book.css}" />
   </head>
-  <body></body>
+  <body>
+
+      
+      <form  class="login-form" >
+        <h1>New-Book</h1>
+        <div class="form-input-material">
+          <input type="text" name="book-name" id="book-name-id" placeholder=" " autocomplete="off" class="form-control-material" required />
+          <label for="book-name">Name</label>
+        </div>
+        <button type="submit" class="btn btn-primary btn-ghost">Submit</button>
+      </form>
+
+
+  </body>
 </html>
