@@ -10,7 +10,9 @@
   </head>
   <body>
     <header>
+      <a th:href="@{/books/findAll}" id="direct-find-all-id" class="direct-new-book">Books</a>
       <a th:href="@{/books/new}" id="direct-new-book-id" class="direct-new-book">New Book</a>
+      <a th:href="@{/}" id="direct-home-id" class="direct-new-book">Home</a>
     </header>
     <main>
       <table>
@@ -20,6 +22,9 @@
             <th>Name</th>
             <th>Description</th>
             <th>Price</th>
+            <th>author</th>
+            <th>pageCount</th>
+            <th>username</th>
           </tr>
         </thead>
         <tbody>
@@ -28,6 +33,9 @@
             <td th:text="${book.name}"></td>
             <td th:text="${book.description}"></td>
             <td th:text="${book.price}"></td>
+            <td th:text="${book.author}"></td>
+            <td th:text="${book.pageCount}"></td>
+            <td th:text="${book.username}"></td>
           </tr>
         </tbody>
       </table>

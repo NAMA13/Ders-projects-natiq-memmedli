@@ -5,6 +5,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <link rel="stylesheet" th:href="@{/css/reset.css}" />
+    <link rel="stylesheet" th:href="@{/css/main.css}" />
+    <link rel="stylesheet" th:href="@{/css/new-book.css}" />
   </head>
-  <body></body>
+  <body>
+    <header>
+      <a th:href="@{/books/findAll}" id="direct-find-all-id" class="direct-new-book">Books</a>
+      <a th:href="@{/books/new}" id="direct-new-book-id" class="direct-new-book">New Book</a>
+      <a th:href="@{/}" id="direct-home-id" class="direct-new-book">Home</a>
+    </header>
+  </body>
 </html>
