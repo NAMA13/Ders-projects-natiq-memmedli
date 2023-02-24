@@ -8,6 +8,9 @@
     <link rel="stylesheet" th:href="@{/css/reset.css}" />
     <link rel="stylesheet" th:href="@{/css/main.css}" />
     <link rel="stylesheet" th:href="@{/css/new-book.css}" />
+    <link rel="stylesheet" href="../static/css/reset.css" />
+    <link rel="stylesheet" href="../static/css/main.css" />
+    <link rel="stylesheet" href="../static/css/new-book.css" />
   </head>
   <body>
     <form
@@ -16,30 +19,45 @@
       th:object="${book}"
       method="POST"
     >
-      <h1>New-Book</h1>
+      <h1>New - Book</h1>
       <div class="form-input-material">
+        <label for="book-name" class="label-cr" hidden>Name:</label>
         <input
           type="text"
           name="book-name"
           id="book-name"
           autocomplete="off"
-          class="form-control-material"
+          class="form-control-material input"
           th:field="*{name}"
           required
+          placeholder="Name"
         />
-        <label for="book-name">Name</label>
       </div>
       <div class="form-input-material">
+        <label for="book-description" class="label-cr" hidden>Description:</label>
         <input
           type="text"
           name="book-description"
           id="book-description"
           autocomplete="off"
-          class="form-control-material"
+          class="form-control-material input"
           th:field="*{description}"
           required
+          placeholder="Description"
         />
-        <label for="book-description">Description</label>
+      </div>
+      <div class="form-input-material">
+        <label for="book-price" class="label-cr" hidden>Price:</label>
+        <input
+          type="number"
+          name="book-price"
+          id="book-price"
+          autocomplete="off"
+          class="form-control-material input"
+          th:field="*{price}"
+          required
+          placeholder="Price"
+        />
       </div>
       <button type="submit" class="btn btn-primary btn-ghost">Submit</button>
     </form>
