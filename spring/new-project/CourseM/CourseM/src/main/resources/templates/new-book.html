@@ -10,17 +10,38 @@
     <link rel="stylesheet" th:href="@{/css/new-book.css}" />
   </head>
   <body>
-
-      
-      <form  class="login-form" >
-        <h1>New-Book</h1>
-        <div class="form-input-material">
-          <input type="text" name="book-name" id="book-name-id" placeholder=" " autocomplete="off" class="form-control-material" required />
-          <label for="book-name">Name</label>
-        </div>
-        <button type="submit" class="btn btn-primary btn-ghost">Submit</button>
-      </form>
-
-
+    <form
+      th:action="@{/books/new-book-process}"
+      class="login-form"
+      th:object="${book}"
+      method="POST"
+    >
+      <h1>New-Book</h1>
+      <div class="form-input-material">
+        <input
+          type="text"
+          name="book-name"
+          id="book-name"
+          autocomplete="off"
+          class="form-control-material"
+          th:field="*{name}"
+          required
+        />
+        <label for="book-name">Name</label>
+      </div>
+      <div class="form-input-material">
+        <input
+          type="text"
+          name="book-description"
+          id="book-description"
+          autocomplete="off"
+          class="form-control-material"
+          th:field="*{description}"
+          required
+        />
+        <label for="book-description">Description</label>
+      </div>
+      <button type="submit" class="btn btn-primary btn-ghost">Submit</button>
+    </form>
   </body>
 </html>
