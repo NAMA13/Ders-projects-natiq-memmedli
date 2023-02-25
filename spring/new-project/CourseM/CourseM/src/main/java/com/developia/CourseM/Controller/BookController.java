@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.developia.CourseM.Model.Book;
@@ -52,6 +53,12 @@ public class BookController {
 		repository.save(book);
 		List<Book> books = repository.findAll();
 		model.addAttribute("books", books);
+		return "redirect:/books/findAll";
+	}
+	
+	@GetMapping(path = "/books/delete/{id}")
+	public String editBook(@PathVariable(name = "id") Integer id) {
+		repository.deleteById(id);
 		return "redirect:/books/findAll";
 	}
 }
