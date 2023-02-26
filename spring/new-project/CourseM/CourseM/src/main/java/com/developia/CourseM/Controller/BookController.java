@@ -1,6 +1,7 @@
 package com.developia.CourseM.Controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
@@ -42,23 +43,44 @@ public class BookController {
 	public String openNewBookPage(Model model) {
 		Book book = new Book();
 		model.addAttribute("book", book);
+		model.addAttribute("header", "New Book");
 		return "new-book";
 	}
 
 	@PostMapping(path = "/books/new-book-process")
 	public String saveBook(@ModelAttribute(name = "book") Book book, Model model) {
-		book.setImage("Book.jpg");
-
+		book.setImage("Book.jpg");		
 		book.setUsername(getUsername());
 		repository.save(book);
 		List<Book> books = repository.findAll();
 		model.addAttribute("books", books);
 		return "redirect:/books/findAll";
 	}
-	
+
 	@GetMapping(path = "/books/delete/{id}")
-	public String editBook(@PathVariable(name = "id") Integer id) {
-		repository.deleteById(id);
+	public String deleteBook(@PathVariable(name = "id") Integer id) {
+		boolean bookExists = repository.findById(id).isPresent();
+		if (bookExists) {
+			repository.deleteById(id);
+		} else {
+
+		}
+		List<Book> books = repository.findAll();
 		return "redirect:/books/findAll";
+	}
+
+	@GetMapping(path = "/books/edit/{id}")
+	public String editBook(@PathVariable(name = "id") Integer id, Model model) {
+		Optional<Book> bookOptional = repository.findById(id);
+		boolean bookExists = bookOptional.isPresent();
+		Book book = new Book();
+		if (bookExists) {
+			book = bookOptional.get();
+		} else {
+
+		}
+		model.addAttribute("book", book);
+		model.addAttribute("header", "Book Edit");
+		return "new-book";
 	}
 }

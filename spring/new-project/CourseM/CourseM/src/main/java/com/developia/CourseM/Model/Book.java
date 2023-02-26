@@ -17,9 +17,9 @@ public class Book {
 	private Integer id;
 	private String name;
 	private String description;
-	private Double price;
+	private Double price; 
 	private String author;
 	private Integer pageCount;
-	private String image;
+	private String image; 
 	private String username;
 }
