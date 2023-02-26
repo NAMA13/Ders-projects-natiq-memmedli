@@ -44,7 +44,7 @@
       <table id="booksTable">
         <thead>
           <tr>
-            <th>ID</th>
+            <th>ID</th> 
             <th>Name</th>
             <th>Description</th>
             <th>Price</th>
@@ -62,7 +62,7 @@
             <td th:text="${book.author}"></td>
             <td th:text="${book.pageCount}"></td>
             <td>
-              <a th:href="@{/books/delete/{id}(id=${book.id})}" class="btn-row">Delete</a
+              <a th:href="@{/books/delete/{id}(id=${book.id})}" class="btn-row" th:onclick="if(!(confirm('Are you sure?')))">Delete</a
               ><a th:href="@{/books/edit/{id}(id=${book.id})}" class="btn-row">Edit</a>
             </td>
           </tr>

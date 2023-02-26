@@ -10,10 +10,6 @@
     <link rel="stylesheet" th:href="@{/css/new-book.css}" />
   </head>
   <body>
-    <header>
-      <a th:href="@{/books/findAll}" id="direct-find-all-id" class="direct-new-book">Books</a>
-      <a th:href="@{/books/new}" id="direct-new-book-id" class="direct-new-book">New Book</a>
-      <a th:href="@{/}" id="direct-home-id" class="direct-new-book">Home</a>
-    </header>
+    <div th:replace="header :: header"></div>
   </body>
 </html>

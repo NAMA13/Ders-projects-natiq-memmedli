@@ -4,27 +4,36 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title th:text="${header}">Document</title>
     <link rel="stylesheet" th:href="@{/css/reset.css}" />
     <link rel="stylesheet" th:href="@{/css/main.css}" />
     <link rel="stylesheet" th:href="@{/css/new-book.css}" />
-    <!-- <link rel="stylesheet" href="../static/css/reset.css" />
-    <link rel="stylesheet" href="../static/css/main.css" />
-    <link rel="stylesheet" href="../static/css/new-book.css" /> -->
   </head>
   <body>
-    <header>
-      <a th:href="@{/books/findAll}" id="direct-find-all-id" class="direct-new-book">Books</a>
-      <a th:href="@{/books/new}" id="direct-new-book-id" class="direct-new-book">New Book</a>
-      <a th:href="@{/}" id="direct-home-id" class="direct-new-book">Home</a>
-    </header>
+    <div th:replace="header :: header"></div>
+    
     <form
       th:action="@{/books/new-book-process}"
       class="login-form"
       th:object="${book}"
       method="POST"
     >
-      <h1>New - Book</h1>
+      <h1 th:text="${header}">New - Book</h1>
+
+      <div class="form-input-material">
+        <label for="book-id" class="label-cr" hidden>id:</label>
+        <input
+          type="hidden"
+          name="book-id"
+          id="book-id-id"
+          autocomplete="off"
+          class="form-control-material input"
+          th:field="*{id}"
+          placeholder="id"
+          disabled
+        />
+      </div>
+
       <div class="form-input-material">
         <label for="book-name" class="label-cr" hidden>Name:</label>
         <input
@@ -42,7 +51,7 @@
         <label for="book-description" class="label-cr" hidden
           >Description:</label
         >
-        <input
+        <!-- <input
           type="text"
           name="book-description"
           id="book-description"
@@ -51,7 +60,18 @@
           th:field="*{description}"
           required
           placeholder="Description"
-        />
+        /> -->
+        <textarea
+          name="book-description"
+          id="book-description"
+          cols="30"
+          rows="10"
+          autocomplete="off"
+          class="form-control-material input-text"
+          th:field="*{description}"
+          required
+          placeholder="Description"
+        ></textarea>
       </div>
       <div class="form-input-material">
         <label for="book-price" class="label-cr" hidden>Price:</label>
@@ -93,7 +113,7 @@
         />
       </div>
 
-      <button type="submit" class="btn btn-primary btn-ghost">Submit</button>
+      <button type="submit" class="btn btn-primary btn-ghost">Save</button>
     </form>
   </body>
 </html>

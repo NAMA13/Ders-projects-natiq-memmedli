@@ -1,0 +1,23 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Header</title>
+  </head>
+  <body>
+    <header th:fragment="header">
+        <a
+          th:href="@{/books/findAll}"
+          id="direct-find-all-id"
+          class="direct-new-book"
+          >Books</a
+        >
+        <a th:href="@{/books/new}" id="direct-new-book-id" class="direct-new-book"
+          >New Book</a>
+        <a th:href="@{/orders}" id="direct-home-id" class="direct-new-book">Orders</a>
+        <a th:href="@{/}" id="direct-home-id" class="direct-new-book">Home</a>
+        <a th:href="@{/logout}" id="direct-home-id" class="direct-new-book log-out">Log out</a>
+      </header>
+  </body>
+</html>
