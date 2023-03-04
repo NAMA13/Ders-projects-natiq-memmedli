@@ -1,5 +1,7 @@
 package com.developia.CourseM.Controller;
 
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 
@@ -19,9 +21,14 @@ import com.developia.CourseM.Repository.BookRepository;
 
 @Controller
 public class CustomerController {
-	@GetMapping(path = "/customers")
+	
+	@Autowired
+	private BookRepository repository;
+	
+	@GetMapping(path = "/customer")
 	public String showCustomerPage(Model model) {
-		
+		List<Book> books = repository.findAll();
+		model.addAttribute("books", books);
 		return "customer";
 	}
 }

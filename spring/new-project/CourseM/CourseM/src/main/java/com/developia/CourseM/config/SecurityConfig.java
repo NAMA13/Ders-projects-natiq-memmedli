@@ -19,31 +19,24 @@ import org.springframework.security.core.context.SecurityContextHolder;
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-	
-	@Autowired
-	private DataSource ds;
-	
+//	@Autowired
+//	private DataSource ds;
+//	
 //	@Override
 //	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 //		 auth.jdbcAuthentication().dataSource(ds);
 //	}
-	
-//	@Override
-//	protected void configure(HttpSecurity http) throws Exception {
-//
-//
-//		http.authorizeRequests()
-//		.antMatchers(HttpMethod.GET, "/h2-console/**").permitAll()
-//		.antMatchers(HttpMethod.GET, "/css/**").permitAll()
-//		.antMatchers(HttpMethod.GET, "/js/**").permitAll()
-//		.anyRequest().authenticated();
-//		}
-//
-//	}
+//	
+	@Override
+	protected void configure(HttpSecurity http) throws Exception {
+
+		http.authorizeRequests().antMatchers(HttpMethod.GET, "/h2-console/**").permitAll()
+				.antMatchers(HttpMethod.GET, "/css/**").permitAll().antMatchers(HttpMethod.GET, "/js/**").permitAll()
+				.antMatchers("/h2-console/**").permitAll().anyRequest().authenticated().and().formLogin()
+				.loginPage("/show-login").loginProcessingUrl("/authenticate-user").permitAll();
+
+		http.csrf().disable();
+//		http.headers().frameOptions().disable();
+	}
 
 }
-
-
-
-
-
