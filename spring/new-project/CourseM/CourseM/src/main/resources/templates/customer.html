@@ -1,12 +1,52 @@
-<!DOCTYPE>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymleaf.org">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Customer</title>
+    <link rel="stylesheet" th:href="@{/css/reset.css}" />
+    <link rel="stylesheet" th:href="@{/css/main.css}" />
+    <link rel="stylesheet" th:href="@{/css/new-book.css}" />
+    <link rel="stylesheet" th:href="@{/css/cutomer.css}" />
+    <!-- <link rel="stylesheet" href="../static/css/reset.css" />
+    <link rel="stylesheet" href="../static/css/main.css" />
+    <link rel="stylesheet" href="../static/css/cutomer.css" />
+    <link rel="stylesheet" href="../static/css/new-book.css" /> -->
+    <link
+      rel="stylesheet"
+      href="https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css"
+    />
   </head>
   <body>
-    <div th:replace="${header :: header}"></div>
+    <div th:replace="header :: header"></div>
+    <div class="basket_btn">
+      <i class="fi fi-rr-shopping basket"></i>
+    </div>
+    <div class="main_container">
+      <div class="book_container">
+        <div class="book" th:each="book : ${books}">
+          <img th:src="${book.image}" alt="${book.image}" class="main_img" />
+          <div class="book_container_body">
+            <div class="book_price">25$</div>
+            <div class="book_name" th:text="${book.name}"></div>
+
+            <div class="book_little_panel">
+              <div class="book_description" th:text="${book.description}"></div>
+            </div>
+          </div>
+          <div class="under_panel_book">
+            <div class="right_panel">
+              <div class="book_author" th:text="${book.author}">
+                Dostoyevsky
+              </div>
+              <div class="book_page_count" th:text="${book.pageCount}">625</div>
+            </div>
+            <div class="left_panel">
+              <div class="buy_it_button">Add to basket</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </body>
 </html>

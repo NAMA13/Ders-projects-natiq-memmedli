@@ -10,8 +10,9 @@
     <link rel="stylesheet" th:href="@{/css/new-book.css}" />
   </head>
   <body>
+
     <div th:replace="header :: header"></div>
-    
+
     <form
       th:action="@{/books/new-book-process}"
       class="login-form"
@@ -43,24 +44,19 @@
           autocomplete="off"
           class="form-control-material input"
           th:field="*{name}"
-          required
           placeholder="Name"
         />
+        <span
+          class="error-line"
+          th:if="${#fields.hasErrors('name')}"
+          th:errors="*{name}"
+        ></span>
       </div>
+
       <div class="form-input-material">
         <label for="book-description" class="label-cr" hidden
           >Description:</label
         >
-        <!-- <input
-          type="text"
-          name="book-description"
-          id="book-description"
-          autocomplete="off"
-          class="form-control-material input"
-          th:field="*{description}"
-          required
-          placeholder="Description"
-        /> -->
         <textarea
           name="book-description"
           id="book-description"
@@ -72,7 +68,13 @@
           required
           placeholder="Description"
         ></textarea>
+        <span
+          class="error-line"
+          th:if="${#fields.hasErrors('description')}"
+          th:errors="*{description}"
+        ></span>
       </div>
+
       <div class="form-input-material">
         <label for="book-price" class="label-cr" hidden>Price:</label>
         <input
@@ -85,6 +87,11 @@
           required
           placeholder="Price"
         />
+        <span
+        class="error-line"
+        th:if="${#fields.hasErrors('price')}"
+        th:errors="*{price}"
+      ></span>
       </div>
       <div class="form-input-material">
         <label for="book-author" class="label-cr" hidden>Author:</label>
@@ -98,6 +105,11 @@
           required
           placeholder="Author"
         />
+        <span
+        class="error-line"
+        th:if="${#fields.hasErrors('author')}"
+        th:errors="*{author}"
+      ></span>
       </div>
       <div class="form-input-material">
         <label for="book-pageCount" class="label-cr" hidden>PageCount:</label>
@@ -111,6 +123,11 @@
           required
           placeholder="pageCount"
         />
+        <span
+        class="error-line"
+        th:if="${#fields.hasErrors('pageCount')}"
+        th:errors="*{pageCount}"
+      ></span>
       </div>
 
       <button type="submit" class="btn btn-primary btn-ghost">Save</button>
