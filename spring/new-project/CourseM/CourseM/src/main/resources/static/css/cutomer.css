@@ -1,6 +1,7 @@
-@import url('https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css');
+@import url("https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css");
 * {
   transition: all 0.5s;
+  text-decoration: none;
 }
 .main_container {
   width: 100%;
@@ -210,21 +211,152 @@
   box-shadow: 0px 0px 25px #000000;
   cursor: pointer;
 }
+.right_bottom_panel_twice {
+  width: auto;
+  height: 6vh;
+  border: 1px solid #ffffff69;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-content: center;
+  justify-content: space-around;
+  align-items: center;
+  margin: 43.5% 0px 0px 96%;
+  position: fixed;
+}
 .basket_btn {
-  width: 10vh;
-  height: 5vh;
+  width: 0vh;
+  height: 6vh;
+  opacity: 0;
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
   align-content: center;
   justify-content: center;
   align-items: center;
-  background-color: #ffd900;
+  background-color: #ffffff37;
+  backdrop-filter: blur(2px);
   border-radius: 5px;
-  color: black;
-  position: fixed;
-  margin: 87.5vh 0px 0px 187vh;
+  color: white;
+  font-size: 16px;
+  font-family: sans-serif;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: all 0.5s cubic-bezier(0.215, 0.61, 0.355, 1);
 }
-.basket{
-  color: #ffffff;
+.basket_btn:hover {
+  color: #000000 !important;
+  background-color: whitesmoke !important;
+}
+.right_bottom_panel_twice.active .basket_btn {
+  opacity: 1;
+  width: 7%;
+  height: 6vh;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+  background-color: #ffffff37;
+  border-radius: 5px;
+  color: whitesmoke;
+}
+.right_bottom_panel_twice.focus .basket_btn{
+  opacity: 0;
+  width: 0%;
+  visibility: hidden;
+}
+.right_bottom_panel_twice.active .basket_btn::before {
+  content: "Basket";
+}
+/* --- */
+.search_box_cont {
+  width: auto;
+  height: 6vh;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+  background-color: #ffffff37;
+  border-radius: 5px;
+  transition: all 1s !important;
+}
+.right_bottom_panel_twice.focus .search_box_cont{
+  width: 100%;
+}
+.main_search {
+  width: 0vh;
+  height: 6vh;
+  border: none;
+  outline: none;
+  border-radius: 5px;
+  opacity: 0;
+  visibility: hidden;
+  font-size: 15px;
+}
+.icon_search {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-content: center;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+  height: 6vh;
+  padding: 0px 1.5vh 0px 2vh;
+  color: whitesmoke;
+  transition: all 1s;
+}
+.right_bottom_panel_twice.focus .icon_search{
+  width: 1% !important;
+}
+.right_bottom_panel_twice.focus .main_search{
+  width: 99% !important;
+}
+.right_bottom_panel_twice.active .icon_search{
+  width: 5%;
+}
+.right_bottom_panel_twice.active {
+  width: 97%;
+  height: 6vh;
+  border: 1px solid #ffffff69;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-content: center;
+  justify-content: space-between;
+  align-items: center;
+  margin: 43.5% 0px 0px 1.5%;
+  position: fixed;
+  box-shadow: 0px 0px 25px #00000071;
+}
+.right_bottom_panel_twice.active .main_search {
+  width: 95%;
+  height: 6vh;
+  border: none;
+  outline: none;
+  border-radius: 5px;
+  background-color: transparent;
+  opacity: 1;
+  visibility: visible;
+  color: whitesmoke;
+}
+.main_search:focus{
+  width: 95%;
+  height: 6vh;
+}
+.main_search::placeholder {
+  color: whitesmoke;
+  font-size: 15px;
+  text-align: left;
+  transition: all 0.5s;
+}
+.main_search:focus::placeholder {
+  font-size: 25px;
+  opacity: 0;
 }

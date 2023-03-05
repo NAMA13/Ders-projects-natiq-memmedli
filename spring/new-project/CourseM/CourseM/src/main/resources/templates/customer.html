@@ -5,23 +5,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Customer</title>
     <link rel="stylesheet" th:href="@{/css/reset.css}" />
+    <link
+      rel="stylesheet"
+      href="https://cdn-uicons.flaticon.com/uicons-bold-rounded/css/uicons-bold-rounded.css"
+    />
     <link rel="stylesheet" th:href="@{/css/main.css}" />
     <link rel="stylesheet" th:href="@{/css/new-book.css}" />
     <link rel="stylesheet" th:href="@{/css/cutomer.css}" />
-    <!-- <link rel="stylesheet" href="../static/css/reset.css" />
-    <link rel="stylesheet" href="../static/css/main.css" />
-    <link rel="stylesheet" href="../static/css/cutomer.css" />
-    <link rel="stylesheet" href="../static/css/new-book.css" /> -->
-    <link
-      rel="stylesheet"
-      href="https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css"
-    />
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js"
+      defer
+      integrity="sha512-STof4xm1wgkfm7heWqFJVn58Hm3EtS31XFaagaa8VMReCXAkQnJZ+jEy8PCC/iT18dFy95WcExNHFTqLyp72eQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script defer th:src="@{/js/customer.js}"></script>
   </head>
   <body>
     <div th:replace="header :: header"></div>
-    <div class="basket_btn">
-      <i class="fi fi-rr-shopping basket"></i>
+    <div class="right_bottom_panel_twice" id="right_bottom_panel_twice_id">
+      <div class="search_box_cont" id="search_box_cont_id">
+        <div class="icon_search">
+          <i class="fi fi-br-search"></i>
+        </div>
+        <input type="text" class="main_search" placeholder="Search book" id="main_search_id" />
+      </div>
+      <a href="/" class="basket_btn"></a>
     </div>
+
     <div class="main_container">
       <div class="book_container">
         <div class="book" th:each="book : ${books}">
@@ -42,7 +53,7 @@
               <div class="book_page_count" th:text="${book.pageCount}">625</div>
             </div>
             <div class="left_panel">
-              <div class="buy_it_button">Add to basket</div>
+              <a href="/" class="buy_it_button">Add to basket</a>
             </div>
           </div>
         </div>
