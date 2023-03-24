@@ -12,6 +12,11 @@
     <link rel="stylesheet" th:href="@{/css/main.css}" />
     <link rel="stylesheet" th:href="@{/css/new-book.css}" />
     <link rel="stylesheet" th:href="@{/css/cutomer.css}" />
+
+    <link rel="stylesheet" href="/css/main.css" />
+    <link rel="stylesheet" href="/css/new-book.css" />
+    <link rel="stylesheet" href="/css/cutomer.css" />
+    
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js"
       defer
@@ -20,6 +25,7 @@
       referrerpolicy="no-referrer"
     ></script>
     <script defer th:src="@{/js/customer.js}"></script>
+    <script defer src="/js/customer.js"></script>
   </head>
   <body>
     <div th:replace="header :: header"></div>
