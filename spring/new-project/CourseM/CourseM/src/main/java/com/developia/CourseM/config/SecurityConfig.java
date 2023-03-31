@@ -32,11 +32,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 		http.authorizeRequests().antMatchers(HttpMethod.GET, "/h2-console/**").permitAll()
 				.antMatchers(HttpMethod.GET, "/css/**").permitAll().antMatchers(HttpMethod.GET, "/js/**").permitAll()
-				.antMatchers("/h2-console/**").permitAll().anyRequest().authenticated().and().formLogin()
+				.antMatchers("/h2-console/**").permitAll()
+	            .antMatchers(HttpMethod.GET,"/create-account").permitAll()
+				.anyRequest().authenticated().and().formLogin()
 				.loginPage("/show-login").loginProcessingUrl("/authenticate-user").permitAll();
 
 		http.csrf().disable();
 //		http.headers().frameOptions().disable();
 	}
-
 }
