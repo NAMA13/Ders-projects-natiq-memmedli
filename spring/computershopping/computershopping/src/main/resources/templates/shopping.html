@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Alış-veriş</title>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"/>
+    <script
+            src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script
+            src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" th:href="@{/styles/shopping.css}"/>
+</head>
+<body>
+<div class="container-fluid">
+    <hr/>
+    <div class="row">
+        <div class="col-sm-12">
+            <a class="btn btn-warning" th:href="@{/}">Əsas səhifə</a>
+        </div>
+    </div>
+    <hr/>
+    <div class="row">
+        <div class="col-sm-3">
+            <input id="category-search-input" type="search" class="form-control"
+                   placeholder="Axtarış" onkeyup="searched()"/><br/>
+            <div id="computer-categories-div">
+
+
+            </div>
+        </div>
+        <div class="col-sm-9">
+            <div id="computers-loading">
+                <div class="spinner-border"></div>
+            </div>
+            <div id="computers-div">
+
+
+            </div>
+        </div>
+    </div>
+
+    <div id="computers-loading-next">
+        <div class="spinner-border"></div>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-sm-3">
+        <br/>
+    </div>
+    <div class="col-sm-9">
+        <div id="computers-loading-2">
+            <div class="spinner-border"></div>
+        </div>
+        <div id="computers-loading-next">
+            <div class="spinner-border"></div>
+        </div>
+    </div>
+</div>
+<div id="basket-modal">
+    <div id="basket-modal-content" style="overflow-x: auto">
+        <div style="overflow: auto; margin-bottom: 5px">
+            <span id="basket-modal-close-button">x</span>
+        </div>
+        <h1 style="text-align: center">Səbət</h1>
+        <table class="basket-table table table-bordered">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Şəkil</th>
+
+                <th>Ad</th>
+                <th>Qiymət</th>
+                <th>Miqdar</th>
+                <th>Ümumi qiymət</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody id="basket-computers-table-body"></tbody>
+        </table>
+
+        <div style="overflow: auto">
+          <span id="basket-total-price"
+          >Ümumi qiymət:
+            <span id="basket-total-price-content">0</span> AZN</span
+          >
+            <button
+                    onclick="clearBasket()"
+                    id="clear-basket-button"
+                    class="btn btn-danger"
+            >
+                Səbəti təmizlə
+            </button>
+            <button
+                    onclick="confirmOrder()"
+                    id="confirm-order-button"
+                    class="btn btn-success"
+            >
+                Sifarişi təstiqlə
+            </button>
+        </div>
+    </div>
+</div>
+
+<div id="confirm-order-modal">
+    <div id="confirm-order-modal-form-div">
+        <button onclick="closeOrderModal()" style="position: fixed;transform: translate(-65%,-65%)"><img
+                src="/images/cross-small.svg" width="50px"></button>
+        <form id="confirm-order-modal-form" th:action="@{/show-shopping}" th:object="${order}" class="was-validated"
+              onsubmit="onOrderSubmit(event)" method="POST">
+            <div class="form-group">
+                <label for="customer-name">Ad:</label>
+                <input type="text" class="form-control" id="customer-name" placeholder="Adınızı yazın"
+                       th:field="*{name}" required minlength="2" maxlength="30"/>
+                <div class="valid-feedback">Düzgündür</div>
+                <div class="invalid-feedback">Boş qoymayın. Minimum 2, maksimum 30 simvol ola bilər</div>
+            </div>
+
+            <div class="form-group">
+                <label for="customer-address">Ünvan:</label>
+                <input type="text" class="form-control" id="customer-address" placeholder="Ünvanınızı yazın"
+                       th:field="*{adress}" required maxlength="300"/>
+                <div class="valid-feedback">Düzgündür</div>
+                <div class="invalid-feedback">Boş qoymayın</div>
+            </div>
+
+            <div class="form-group">
+                <label for="customer-phone">Telefon:</label>
+                <input type="text" class="form-control" id="customer-phone" placeholder="Telefonunuzu yazın"
+                       th:field="*{number}" required pattern="((\(\d{3}\) ?)|(\d{3}-))?\d{3}-\d{4}"/>
+                <div class="valid-feedback">Düzgündür</div>
+                <div class="invalid-feedback">Telefon düzgün formada yazılmayıb. Bu (000-000-0000) formatda
+                    yazılmalıdır
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="customer-email">Email:</label>
+                <input type="text" class="form-control" id="customer-email" placeholder="Emailinizi yazın"
+                       th:field="*{email}" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"/>
+                <div class="valid-feedback">Düzgündür</div>
+                <div class="invalid-feedback">Email düzgün formada yazılmayıb</div>
+            </div>
+
+            <div class="form-group">
+                <label for="customer-order-note">Qeyd:</label>
+                <input type="text" class="form-control" id="customer-order-note" placeholder="Qeyd yaza bilərsiniz"
+                       th:field="*{note}" maxlength="300"/>
+                <div class="valid-feedback">Düzgündür</div>
+                <div class="invalid-feedback">Boş qoymayın</div>
+            </div>
+
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" type="checkbox" required/>
+                    Məlumatların doğruluğunu təstiq edirəm
+                    <div class="valid-feedback">Təstiq etdiniz</div>
+                    <div class="invalid-feedback">Təstiq etməlisiniz</div>
+                </label>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Yadda saxla</button>
+        </form>
+    </div>
+</div>
+
+<div id="computer-details-modal">
+    <button id="close-computer-modal" style="border: 0px; background: transparent" onclick="closeComputerModal()"><img
+            src="/images/cross-small.svg" width="50px"></button>
+    <div id="computer-details-modal-content">
+        <h2 style="text-align: center">Komputer haqqında ətraflı məlumat</h2>
+        <div id="computer-modal-image-container"></div>
+        <div id="computer-modal-name"></div>
+        <div id="computer-modal-description">Təsvir</div>
+        <div id="computer-modal-price">Qiymət</div>
+        <div id="computer-modal-phone">Telefon</div>
+        <div id="computer-modal-new">Yeni</div>
+        <div id="computer-modal-ram">Əməli yaddaş</div>
+        <div id="computer-modal-cpu">CPU</div>
+        <div id="computer-modal-drive">Daimi yaddaş</div>
+        <div id="computer-modal-drive-type">Daimi yaddaş tipi</div>
+        <div id="computer-modal-os">Əməliyyat sistemi</div>
+        <div id="computer-modal-video-card">Video kart</div>
+    </div>
+</div>
+
+<div id="fixed-elements"></div>
+<button
+        type="button"
+        class="btn btn-primary"
+        id="open-basket-button"
+        onclick="onOpenBasket()"
+>
+    Səbət <span id="basket-computer-count" class="badge badge-light">0</span>
+</button>
+
+
+<script>
+    let basketComputerCount = document.getElementById('basket-computer-count');
+    let openBasketButton = document.getElementById('open-basket-button');
+    let basketComputers = [];
+    let basketModalElement = document.getElementById('basket-modal');
+    let basketModalCloseButtonElement = document.getElementById('basket-modal-close-button');
+    let basketComputersTableBodyElement = document.getElementById('basket-computers-table-body');
+    let basketTotalPriceContentElement = document.getElementById('basket-total-price-content');
+
+    function showAlertMessage(message, duration) {
+        let messageElement = document.createElement('div');
+        messageElement.innerHTML = message;
+        messageElement.classList.add('alert-message');
+
+        let fixedElements = document.getElementById('fixed-elements');
+        fixedElements.appendChild(messageElement);
+        messageElement.style.display = 'block';
+        setTimeout(() => {
+            messageElement.style.display = 'none';
+            messageElement.remove();
+        }, duration);
+    }
+
+    function confirmOrder() {
+        document.getElementById("confirm-order-modal").style.display = "block"
+    }
+
+    function onAddToBasket(computerId) {
+        openBasketButton.style.display = 'none';
+        setTimeout(function () {
+            openBasketButton.style.display = 'inline-block';
+
+            let existsInBasket = false;
+            for (let index = 0; index < basketComputers.length; index++) {
+                const b = basketComputers[index];
+                if (b.computer.id === computerId) {
+                    b.count++;
+                    existsInBasket = true;
+                    break;
+                }
+            }
+            if (existsInBasket) {
+            } else {
+                let selectedComputer = null;
+                for (let index = 0; index < computerArrays.length; index++) {
+                    const c = computerArrays[index];
+                    if (c.id === computerId) {
+                        selectedComputer = c;
+                        break;
+                    }
+                }
+                basketComputers.push({count: 1, computer: selectedComputer});
+            }
+            showBasketComputerCount();
+            saveBasketComputersToLocalStorage();
+        }, 200);
+    }
+
+    function saveBasketComputersToLocalStorage() {
+        localStorage.setItem('basketComputers', JSON.stringify(basketComputers));
+    }
+
+    function showBasketComputerCount() {
+        basketComputerCount.innerHTML = basketComputers.length;
+    }
+    ;
+
+    function onOpenBasket() {
+        if (basketComputers.length === 0) {
+            showAlertMessage('Səbət boşdur', 1000);
+        } else {
+            basketModalElement.style.display = 'block';
+            refreshComputersBasket();
+            calculateBasketTotalPrice();
+        }
+    }
+
+    basketModalCloseButtonElement.addEventListener("click", function () {
+        closeBasket();
+    });
+
+    function refreshComputersBasket() {
+        basketComputersTableBodyElement.innerHTML = '';
+        basketComputersTableBodyElementHtml = '';
+        for (let index = 0; index < basketComputers.length; index++) {
+            const b = basketComputers[index];
+            basketComputersTableBodyElementHtml += '<tr><td>' + b.computer.id;
+            basketComputersTableBodyElementHtml += '</td><td><img class="basket-computer-image" src="' +
+                b.computer.imagePath + '"/>';
+            basketComputersTableBodyElementHtml += '</td><td>' + b.computer.name;
+            basketComputersTableBodyElementHtml += '</td><td>' + b.computer.price;
+            basketComputersTableBodyElementHtml += ' AZN</td><td><input min="1" max="10000" type="number" value="' +
+                b.count + '" ' +
+                ' onchange="computerCountChanged(this,' + b.computer.id + ')" onkeypress="checkCount(event)" />';
+            basketComputersTableBodyElementHtml += '</td><td id="computer-total-price-' +
+                b.computer.id + '">' + (b.computer.price * b.count);
+            basketComputersTableBodyElementHtml += ' AZN</td><td><button onclick="deleteBasketComputer(' +
+                b.computer.id +
+                ')" class="btn btn-danger">Sil</button></td><tr>';
+        }
+        basketComputersTableBodyElement.innerHTML = basketComputersTableBodyElementHtml;
+    }
+
+    function calculateBasketTotalPrice() {
+        let totalPrice = 0;
+        for (let index = 0; index < basketComputers.length; index++) {
+            const b = basketComputers[index];
+            totalPrice += b.count * b.computer.price;
+        }
+        basketTotalPriceContentElement.innerHTML = totalPrice;
+    }
+
+    calculateBasketTotalPrice();
+
+    function computerCountChanged(countInput, computerId) {
+        if (countInput.value == '' || countInput.value == '0') {
+            countInput.value = "1";
+        }
+        for (let index = 0; index < basketComputers.length; index++) {
+            const b = basketComputers[index];
+            if (b.computer.id === computerId) {
+                b.count = Number(countInput.value);
+                document.getElementById('computer-total-price-' + b.computer.id).innerHTML = "" + (b.count * b.computer.price) + " AZN";
+                break;
+            }
+        }
+        localStorage.setItem('basketComputers', JSON.stringify(basketComputers));
+        calculateBasketTotalPrice();
+    }
+
+    function deleteBasketComputer(computerId) {
+        for (let index = 0; index < basketComputers.length; index++) {
+            const b = basketComputers[index];
+            if (b.computer.id === computerId) {
+                basketComputers.splice(index, 1);
+                break;
+            }
+        }
+        refreshComputersBasket();
+        localStorage.setItem('basketComputers', JSON.stringify(basketComputers));
+        hideAndShowBasketButton();
+        calculateBasketTotalPrice();
+        if (basketComputers.length === 0) {
+            closeBasket();
+        }
+    }
+
+    function hideAndShowBasketButton() {
+        openBasketButton.style.display = 'none';
+        setTimeout(function () {
+            openBasketButton.style.display = 'block';
+            showBasketComputerCount();
+        }, 200);
+    }
+
+    function closeBasket() {
+        setTimeout(function () {
+            basketModalElement.style.display = 'none';
+        }, 200);
+    }
+
+    function clearBasket() {
+        basketComputers.splice(0, basketComputers.length);
+        refreshComputersBasket();
+        localStorage.setItem('basketComputers', JSON.stringify(basketComputers));
+        calculateBasketTotalPrice();
+        hideAndShowBasketButton();
+
+        setTimeout(() => {
+            closeBasket();
+        }, 300);
+    }
+
+    let computersElement = document.getElementById("computers-div");
+
+    function loadComputers() {
+        let http = new XMLHttpRequest();
+        http.onload = function () {
+            let responseJSON = this.responseText;
+            let computersArray = JSON.parse(responseJSON);
+            fillComputers(computersArray);
+            console.log(computersArray + " " + responseJSON + " ")
+        }
+
+        http.open("GET", "http://localhost:4404/computers", true);
+        http.setRequestHeader('Authorization', localStorage.getItem('token'));
+        http.send();
+
+
+    }
+
+    let computerArrays = []
+    let computerDetailsModal = document.getElementById('computer-details-modal');
+    let computersElementHTML;
+
+    function fillComputers(computers) {
+        computerArrays = computers
+        computersElementHTML = ""
+
+        for (let i = 0; i < computers.length; i++) {
+            const c = computers[i];
+            computersElementHTML += "" +
+                "<div class='computer-card' id='computer-card'>" +
+                "<div class='computer-image' onclick='onComputerSelected(" + c.id + ")' style='background-image:url(" + c.image + ");'></div>" +
+                "<div class='computer-data'><div class='computer-name' title='" +
+                c.name + "'>" + c.name + "</div>" +
+                "<div class='computer-description' title='" +
+                c.description + "'>" + c.description + "</div>" +
+                "<div class='computer-price' title='" + c.price + " AZN'>" +
+                c.price + " AZN</div>" +
+                "<div class='computer-new'>" + (c.is_new ? 'Bəli' : 'Xeyr') + "</div>" +
+                "<div class='user-phone' title='" + c.phone + "'>" + c.phone + "</div>" +
+                "<div class='add-to-basket-div'><button class='btn btn-primary' " +
+                "onclick='onAddToBasket(" +
+                c.id + ")'>Səbətə at</button></div>" +
+                "</div></div>";
+        }
+        computersElement.innerHTML = computersElementHTML;
+    }
+
+    loadComputers();
+    let categoriesDiv = document.getElementById("computer-categories-div");
+    loadComputerCategories()
+
+    function loadComputerCategories() {
+
+        let http = new XMLHttpRequest();
+        http.onload = function () {
+            let responseJSON = this.responseText;
+            let categoriesArray = JSON.parse(responseJSON);
+            fillCategories(categoriesArray);
+        }
+
+        http.open("GET", "http://localhost:4404/categories", true);
+        http.setRequestHeader('Authorization', localStorage
+            .getItem('token'));
+        http.send();
+
+    }
+
+    let computerCategoriesElement = categoriesDiv;
+    let categoriesCount = 0;
+
+    function fillCategories(categories) {
+        let computerCategoriesElementHTML = "<ul class='list-group' id='category-ul'>";
+        for (let i = 0; i < categories.length; i++) {
+            categoriesCount++;
+            const c = categories[i];
+            computerCategoriesElementHTML += "<li class='list-group-item "
+                + "list-group-item-action category-list-class' id='computer-category-"
+                + c.id + "' onclick='onCategorySelected(\"" + c.name
+                + "\")'><a href='#'>" + c.name + "</a></li>";
+
+        }
+        computerCategoriesElementHTML += "</ul>";
+        computerCategoriesElement.innerHTML = computerCategoriesElementHTML;
+    }
+
+
+    function closeOrderModal() {
+        document.getElementById("confirm-order-modal").style.display = "none"
+    }
+
+    let computersModalArray = []
+
+    function onComputerSelected(computerId) {
+        computerDetailsModal.style.display = "block";
+        let http = new XMLHttpRequest();
+        http.onload = function () {
+            let responseJSON = this.responseText;
+            let computersModal = JSON.parse(responseJSON);
+            computersModalArray = computersModal;
+
+            let selectedComputer = computersModalArray.find(computer => computer.id === computerId);
+
+            document.getElementById("computer-modal-image-container").innerHTML = `<img src='${selectedComputer.image}'>`;
+            document.getElementById("computer-modal-name").innerHTML = selectedComputer.name;
+            document.getElementById("computer-modal-description").innerHTML = selectedComputer.description;
+            document.getElementById("computer-modal-price").innerHTML = selectedComputer.price + " AZN";
+            document.getElementById("computer-modal-phone").innerHTML = selectedComputer.phone;
+            document.getElementById("computer-modal-new").innerHTML = (selectedComputer.isNew ? 'Bəli' : 'Xeyr');
+            document.getElementById("computer-modal-ram").innerHTML = selectedComputer.ram + " GB";
+            document.getElementById("computer-modal-cpu").innerHTML = selectedComputer.cpu;
+            document.getElementById("computer-modal-drive").innerHTML = selectedComputer.drive + " GB";
+            document.getElementById("computer-modal-drive-type").innerHTML = selectedComputer.driveType == "hdd" ? "HDD" : "SSD";
+            document.getElementById("computer-modal-os").innerHTML = selectedComputer.os;
+            document.getElementById("computer-modal-video-card").innerHTML = selectedComputer.videoCard + " GB";
+        }
+
+        http.open("GET", "http://localhost:4404/computers/modal", true);
+        http.setRequestHeader('Authorization', localStorage.getItem('token'));
+        http.send();
+    }
+
+    function onCategorySelected(name) {
+        let http = new XMLHttpRequest();
+        http.onload = function () {
+            let responseJSON = this.responseText;
+            let computersArray = JSON.parse(responseJSON);
+            fillComputers(computersArray);
+        }
+
+        http.open("GET", "http://localhost:4404/categories/selected?name=" + name, true);
+        http.setRequestHeader('Authorization', localStorage
+            .getItem('token'));
+        http.send();
+
+        loadComputers()
+    }
+
+
+    function closeComputerModal() {
+        document.getElementById("computer-details-modal").style.display = "none";
+    }
+
+
+    let categories = document.getElementsByClassName("category-list-class");
+
+    function searched() {
+        
+
+        let filteredCategories = document.createElement('div');
+        filteredCategories.id = "filtered-categories";
+
+        for (let i = 0; i < categories.length; i++) {
+            let input, filter, ul, li, a, i, txtValue;
+            input = document.getElementById("category-search-input");
+            filter = input.value.toUpperCase();
+            ul = document.getElementById("category-ul");
+            li = ul.getElementsByTagName("li");
+            for (i = 0; i < li.length; i++) {
+                a = li[i].getElementsByTagName("a")[0];
+                txtValue = a.textContent || a.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    li[i].style.display = "";
+                } else {
+                    li[i].style.display = "none";
+                }
+            }
+    }}
+
+
+    function searchDiv() {
+        const input = document.getElementById('search-input');
+        const divs = document.querySelectorAll('#computer-card .computer-name');
+
+        input.addEventListener('keyup', function() {
+            const filter = input.value.toLowerCase();
+
+            divs.forEach(function(div) {
+                const text = div.textContent.toLowerCase();
+                const match = text.includes(filter);
+
+                if (match) {
+                    div.style.display = 'block';
+                } else {
+                    div.style.display = 'none';
+                }
+            });
+        });
+
+    }
+
+
+
+</script>
+</body>
+</html>

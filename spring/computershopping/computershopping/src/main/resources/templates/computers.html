@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Komputerlərim</title>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link
+            rel="stylesheet"
+            href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <link
+            rel="stylesheet"
+            href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.css"
+    />
+    <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.js"></script>
+<style>
+    .show {
+        display: none;
+    }
+</style>
+    <link rel="stylesheet" th:href="@{/styles/computers.css}"/>
+</head>
+<body>
+<div class="container-fluid" id="main-content">
+    <div class="row">
+        <div class="col-sm-12">
+            <hr/>
+            <a class="btn btn-warning" th:href="@{/}">Əsas səhifə</a>
+            <button class="btn btn-primary" onclick="openNewComputerModel()">YeniKomputer</button>
+            <hr/>
+
+            <div id="computers-loading">
+                <div class="spinner-border"></div>
+            </div>
+            <div id="computers-table">
+                <table class="table table-bordered" id="computers-table-element">
+                    <thead>
+                    <tr>
+                        <th style="width: 10%">ID</th>
+                        <th style="width: 30%">Ad</th>
+                        <th style="width: 20%">Şəkil</th>
+                        <th style="width: 15%">Qiymət</th>
+                        <th style="width: 25%">Əməliyyatlar</th>
+                    </tr>
+                    </thead>
+                    <tbody id="computers-table-body" style="font-size: 16px">
+                    <tr id="computers-div">
+
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="save-computer-modal">
+    <div id="save-computer-modal-content">
+
+        <div style="overflow: auto; margin-bottom: 5px">
+            <button id="save-computer-modal-close-button" onclick="closeModal()">x</button>
+        </div>
+        <h1 style="text-align: center" id="save-computer-header-message"></h1>
+        <div id="save-computer-modal-form-div">
+            <form
+                    id="save-computer-modal-form"
+                    class="was-validated"
+
+            >
+<!--                    onsubmit="onSaveStudent()"-->
+
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label for="category">Kateqoriya:</label>
+                            <div id="category">
+
+                            </div>
+
+                            <div class="form-group">
+                                <label for="computer-name">Ad:</label>
+                                <input
+                                        type="text"
+                                        class="form-control"
+                                        id="computer-name"
+                                        required
+                                        minlength="2"
+                                        maxlength="30"
+
+                                />
+                                <div class="valid-feedback">Düzgündür</div>
+                                <div class="invalid-feedback">
+                                    Boş qoymayın. Minimum 2, maksimum 30 simvol ola bilər
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="computer-price">Qiymət:</label>
+                                <input
+                                        type="number"
+                                        class="form-control"
+                                        id="computer-price"
+                                        required
+                                        min="0"
+                                        max="100000"
+
+                                />
+                                <div class="valid-feedback">Düzgündür</div>
+                                <div class="invalid-feedback">
+                                    Boş qoymayın. Minimum 0, maksimum 100000 ola bilər
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="computer-description">Təsvir:</label>
+                                <input
+                                        type="text"
+                                        class="form-control"
+                                        id="computer-description"
+                                        required
+                                        minlength="2"
+                                        maxlength="300"
+
+                                />
+                                <div class="valid-feedback">Düzgündür</div>
+                                <div class="invalid-feedback">
+                                    Boş qoymayın. Minimum 2, maksimum 300 simvol ola bilər
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="computer-new">Yeni:</label>
+                                <select
+                                        style="appearance: none"
+                                        class="form-control"
+                                        id="computer-new"
+
+                                >
+                                    <option value="true">Bəli</option>
+                                    <option value="false">Xeyr</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="computer-image">Şəkil:</label>
+                                <input
+                                        type="text"
+                                        class="form-control"
+                                        id="computer-image"
+                                        oninput="onComputerImageChange()"
+                                        required
+                                />
+                                <div class="valid-feedback">Düzgündür</div>
+                                <div class="invalid-feedback">Boş qoymayın</div>
+                            </div>
+
+                            <div>
+                                <img
+                                        id="computer-image-show"
+                                        alt="Bu linkdə şəkil mövcud deyil"
+                                        src=""
+                                />
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label for="computer-ram">Əməli yaddaş (GB):</label>
+                            <input
+                                    type="number"
+                                    class="form-control"
+                                    id="computer-ram"
+                                    required
+                                    min="0"
+                                    max="1000"
+
+                            />
+                            <div class="valid-feedback">Düzgündür</div>
+                            <div class="invalid-feedback">Boş qoymayın</div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="computer-cpu">Mərkəzi prosessor:</label>
+                            <input
+                                    type="text"
+                                    class="form-control"
+                                    id="computer-cpu"
+                                    required
+                                    maxlength="100"
+
+                            />
+                            <div class="valid-feedback">Düzgündür</div>
+                            <div class="invalid-feedback">Boş qoymayın</div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="computer-drive">Daimi yaddaş (GB):</label>
+                            <input
+                                    type="number"
+                                    class="form-control"
+                                    id="computer-drive"
+                                    required
+                                    min="0"
+                                    max="10000"
+
+                            />
+                            <div class="valid-feedback">Düzgündür</div>
+                            <div class="invalid-feedback">Boş qoymayın</div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="computer-drive-type">Daimi yaddaş tipi:</label>
+                            <select
+                                    style="appearance: none"
+                                    class="form-control"
+                                    id="computer-drive-type"
+
+                            >
+                                <option value="hdd">HDD</option>
+                                <option value="ssd">SSD</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="computer-os">Əməliyyat sistemi:</label>
+                            <input
+                                    type="text"
+                                    class="form-control"
+                                    id="computer-os"
+                                    required
+                                    maxlength="200"
+
+                            />
+                            <div class="valid-feedback">Düzgündür</div>
+                            <div class="invalid-feedback">Boş qoymayın</div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="computer-video-card">Video kart (GB):</label>
+                            <input
+                                    type="number"
+                                    class="form-control"
+                                    id="computer-video-card"
+                                    required
+                                    min="0"
+                                    max="10000"
+
+                            />
+                            <div class="valid-feedback">Düzgündür</div>
+                            <div class="invalid-feedback">Boş qoymayın</div>
+                        </div>
+                    </div>
+
+                    <hr/>
+                    <br>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <button type="submit" class="btn btn-primary" onclick="onSaveStudent()">
+                                Yadda saxla
+                            </button>
+                            <button
+                                    type="reset"
+                                    class="btn btn-warning"
+                                    onclick="resetComputerForm()"
+                            >
+                                Məlumatları sıfırla
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>
+
+
+
+<script>
+
+    let categoriesDiv = document.getElementById("category");
+    let updateMode = false;
+    let selectedId = 0;
+
+
+    function openNewComputerModel(){
+        document.getElementById("save-computer-modal").style.display = "block"
+        console.log("aaaaaaaaaaaaaa")
+    }
+
+    function closeModal() {
+        document.getElementById("save-computer-modal").style.display = "none"
+        console.log("bbbbbbbbbbbbbb")
+    }
+
+    function loadComputerCategories() {
+
+        let http = new XMLHttpRequest();
+        http.onload = function () {
+            let responseJSON = this.responseText;
+            let categoriesArray = JSON.parse(responseJSON);
+            fillCategories(categoriesArray);
+        }
+
+        http.open("GET", "http://localhost:4404/categories", true);
+        http.setRequestHeader('Authorization', localStorage
+            .getItem('token'));
+        http.send();
+
+    }
+
+    loadComputerCategories()
+
+    let computerCategoriesElement = categoriesDiv;
+
+    function fillCategories(categories) {
+        computerCategoriesElementHTML = "<select class='form-control'>"
+
+        for (let i = 0; i < categories.length; i++) {
+            const c = categories[i];
+            console.log("<option class='form-control' id='category-" + c.id + "'>" + c.name + "</option>")
+
+            computerCategoriesElementHTML += "<option class='form-control' id='category-" + c.id + "' value='" + c.id + "' th:field='${}'>" + c.name + "</option>";
+
+        }
+        computerCategoriesElementHTML += "</select>"
+
+        computerCategoriesElement.innerHTML = computerCategoriesElementHTML;
+    }
+
+
+    function loadComputers() {
+
+        let http = new XMLHttpRequest();
+        http.onload = function () {
+            let responseJSON = this.responseText;
+            let computersArray = JSON.parse(responseJSON);
+            fillComputers(computersArray);
+        }
+
+        http.open("GET", "http://localhost:4404/computers/", true);
+        http.setRequestHeader('Authorization', localStorage
+            .getItem('token'));
+        http.send();
+    }
+
+    loadComputers();
+
+
+    function onComputerImageChange() {
+        document.getElementById("computer-image-show").src = document.getElementById("computer-image").value
+    }
+
+    let computerArrays = []
+    let computersElement = document.getElementById('computers-table-element');
+    let computersElementHTML = ""
+
+    function fillComputers(computers) {
+        computerArrays = computers
+        for (let i = 0; i < computers.length; i++) {
+            const c = computers[i];
+            computersElementHTML += "<tr>"
+
+            computersElementHTML += "<td>"+ c.id +"</td>"
+                +"<td>"+ c.name +"</td>"
+                +"<td>"+ c.image +"</td>"
+                +"<td>"+ c.price +"</td>"
+                +"<td>a</td>"
+
+            computersElementHTML += "<td><button class='btn btn-danger' onclick='deleteStudent(" + c.id + ")'>Sil</button>" +
+                " | <button data-toggle='modal' data-target='#save-computer-modal' type='button' class='btn btn-primary' onclick='editStudent(" + c.id + ")'>Redakte</button>" + "</td></tr>";
+            computersElementHTML += "</tr>"
+
+
+
+
+        }
+        computersElement.innerHTML = computersElementHTML;
+
+        computersElementHTML = "";
+    }
+    uptadeMode = false;
+    let selectedStudentId = 0;
+    function deleteStudent(computerId) {
+        let http = new XMLHttpRequest();
+        http.onload = function () {
+            loadComputers();
+        }
+
+        http.open("DELETE", "http://localhost:4404/computers/" + computerId, true);
+        http.setRequestHeader('Authorization', localStorage
+            .getItem('token'));
+        http.send();
+    }
+    function onSaveStudent() {
+        let studentObject = {};
+        studentObject.image = document.getElementById('computer-image').value;
+        studentObject.os = document.getElementById('computer-os').value;
+        studentObject.ram = document.getElementById('computer-ram').value;
+        studentObject.cpu = document.getElementById('computer-cpu').value;
+        studentObject.name = document.getElementById('computer-name').value;
+        studentObject.drive = document.getElementById('computer-drive').value;
+        studentObject.driveType = document.getElementById('computer-drive-type').value;
+        studentObject.videoCard = document.getElementById('computer-video-card').value;
+        studentObject.isNew = document.getElementById('computer-new').checked;
+        studentObject.price = document.getElementById('computer-price').value;
+        studentObject.description = document.getElementById('computer-description').value;
+
+        let http = new XMLHttpRequest();
+        http.onload = function () {
+            loadComputers();
+        };
+
+        if (updateMode === true) {
+            document.getElementById("save-computer-modal-form").method = "PUT"
+            deleteStudent(selectedId)
+            http.open("PUT", "http://localhost:4404/computers/edit", true);
+            updateMode = false;
+        } else {
+            http.open("POST", "http://localhost:4404/computers/save", true);
+        }
+
+        http.setRequestHeader("Content-type", "application/json");
+        http.setRequestHeader('Authorization', localStorage.getItem('token'));
+        http.send(JSON.stringify(studentObject));
+    }
+
+
+    function editStudent(studentId) {
+        updateMode = true;
+        selectedId = studentId;
+        console.log("edit acildi " + updateMode)
+
+        let http = new XMLHttpRequest();
+        http.onload = function () {
+            let responseJSON = this.responseText;
+            let studentObject = JSON.parse(responseJSON);
+
+            document.getElementById('computer-image').value = studentObject.image;
+            document.getElementById('computer-os').value = studentObject.os;
+            document.getElementById('computer-ram').value = studentObject.ram;
+            document.getElementById('computer-cpu').value = studentObject.cpu;
+            document.getElementById('computer-name').value = studentObject.name;
+            document.getElementById('computer-drive').value = studentObject.drive;
+            document.getElementById('computer-drive-type').value = studentObject.driveType;
+            document.getElementById('computer-video-card').value = studentObject.videoCard;
+            document.getElementById('computer-new').checked = studentObject.isNew;
+            document.getElementById('computer-price').value = studentObject.price;
+            document.getElementById('computer-description').value = studentObject.description;
+
+            selectedStudentId = studentObject.id;
+        }
+
+        http.open("GET", "http://localhost:4404/computers/" + studentId, true);
+        http.setRequestHeader('Authorization', localStorage.getItem('token'));
+        http.setRequestHeader('Accept', 'application/json');
+        http.send();
+    }
+
+
+    function activateAddMode() {
+        updateMode = false;
+        document.getElementById('computer-image').value = ""
+        document.getElementById('computer-os').value = ""
+        document.getElementById('computer-ram').value = ""
+        document.getElementById('computer-cpu').value = ""
+        document.getElementById('computer-name').value = ""
+        document.getElementById('computer-drive').value = ""
+        document.getElementById('computer-drive-type').value = ""
+        document.getElementById('computer-video-card').value = ""
+        document.getElementById('computer-new').checked = false;
+        document.getElementById('computer-price').value = ""
+        document.getElementById('computer-description').value = ""
+    }
+
+
+    activateAddMode()
+</script>
+</body>
+</html>

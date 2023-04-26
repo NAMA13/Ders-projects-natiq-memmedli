@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Admin</title>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link
+            rel="stylesheet"
+            href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="@{/styles/admin.css}"/>
+</head>
+<body>
+<div class="container-fluid" id="main-content">
+    <hr/>
+    <div class="row">
+        <div class="col-sm-12">
+            <h2>Admin səhifəsi</h2>
+            <a class="btn btn-warning" th:href="@{/}">Əsas səhifə</a>
+        </div>
+    </div>
+    <hr/>
+    <div class="row">
+        <div class="col-sm-6">
+            <h3 style="text-align: center">Kateqoriyalar</h3>
+            <input
+                    id="category-search-input"
+                    type="search"
+                    class="form-control"
+                    placeholder="Axtarış"
+                    oninput="searchCategory(this)"
+            /><br/>
+            <div id="computer-categories-div">
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="container">
+                <h2>Add Category</h2>
+                <form action="#" th:action="@{/show-admin}" th:object="${category}" method="post">
+                    <input type="hidden" th:field="*{id}" id="hidden-input">
+                    <div class="form-group">
+                        <label for="category-name-input">Name:</label>
+                        <input type="text" class="form-control" id="category-name-input" th:field="*{name}" required>
+                        <small class="form-text text-danger" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></small>
+                    </div>
+                    <button type="reset" id="reset-category-form-button" class="btn btn-secondary" onclick="clearInput()">Təmizlə</button>
+                    <button type="submit" class="btn btn-primary" th:text="${category.id == null ? 'Save' : 'Update'}"></button>
+                </form>
+                <button type="submit" id="delete-category-button" class="btn btn-danger" onclick="deleteCategory()">Sil</button>
+
+            </div>
+
+
+        </div>
+
+    </div>
+</div>
+
+
+<script>
+    let computerCategoriesElement = document.getElementById("computer-categories-div");
+    let categoryId;
+
+    function fillCategories(categories) {
+        let computerCategoriesElementHTML = "<ul class='list-group'>";
+        for (let i = 0; i < categories.length; i++) {
+            const c = categories[i];
+            computerCategoriesElementHTML += "<li class='list-group-item "
+                + "list-group-item-action' id='computer-category-"
+                + c.id + "' onclick='onCategorySelected(" + c.id
+                + ")'>" + c.name + "</li>";
+        }
+        computerCategoriesElementHTML += "</ul>";
+        computerCategoriesElement.innerHTML = computerCategoriesElementHTML;
+    }
+
+    loadComputerCategories()
+
+    function loadComputerCategories() {
+
+        let http = new XMLHttpRequest();
+        http.onload = function () {
+            let responseJSON = this.responseText;
+            let categoriesArray = JSON.parse(responseJSON);
+            fillCategories(categoriesArray);
+        }
+
+        http.open("GET", "http://localhost:4404/categories", true);
+        http.setRequestHeader('Authorization', localStorage
+            .getItem('token'));
+        http.send();
+    }
+
+    function onCategorySelected(id) {
+        document.getElementById("category-name-input").value = document.getElementById("computer-category-" + id).innerText
+        categoryId = id
+        console.log(id)
+        console.log(document.getElementById("hidden-input").value)
+        document.getElementById("hidden-input").value = categoryId
+    }
+
+    function clearInput() {
+        document.getElementById("category-name-input").value = "";
+        document.getElementById("hidden-input").value ="";
+    }
+
+    function deleteCategory() {
+        let a = confirm("are u sure?")
+        if (a) {
+            var http = new XMLHttpRequest();
+            http.onload = function () {
+                loadComputerCategories();
+            }
+
+            http.open("DELETE", "http://localhost:4404/categories/" + document.getElementById("hidden-input").value, true);
+            http.setRequestHeader('Authorization', localStorage
+                .getItem('token'));
+            http.send();
+        }
+    }
+
+</script>
+</body>
+</html>
